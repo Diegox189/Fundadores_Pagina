@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(90deg, white 0%, #8F121A 50%, #FCCC00 100%);
+
     color: #333;
 }
 /* Header institucional */
@@ -56,6 +56,8 @@ header h1 {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
+        border: 2px solid #FCCC00;
+
 }
 
 .media-card:hover {
@@ -154,4 +156,10 @@ header h1 {
     background-color: #FCCC00;
     color: #8F121A;
     transform: scale(1.05);
+}
+.media-titulo {
+    text-align: center;
+    color: #8F121A;
+    margin-top: 20px;
+    font-size: 1.5rem;
 }
