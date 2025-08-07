@@ -3,11 +3,9 @@
 
 body {
     margin: 0;
-    color: #c90b0bc2;
     font-family: Poppins;
     font-size: 12px;
     min-height: 100vh;
-    background: linear-gradient(135deg, rgb(245, 11, 11) 0%, rgb(231, 166, 24) 53%, rgb(244, 248, 2) 100%);
 }
 
 a {

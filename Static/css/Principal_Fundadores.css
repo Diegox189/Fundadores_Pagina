@@ -10,7 +10,152 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Header y logo principal */
+/* =========================
+   ESTILOS DEL HEADER
+   ========================= */
+.header {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.logo-link {
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.logo-img {
+    height: 120px;
+}
+
+.header-title {
+    text-align: left;
+    flex-grow: 1;
+    font-style: italic;
+}
+
+.institution-name {
+    font-size: 1.2rem;
+    color: #8F121A;
+    margin: 0;
+    font-weight: bold;
+}
+
+.institution-subname {
+    font-size: 1.5rem;
+    color: #8F121A;
+    margin: 0;
+    font-weight: bold;
+}
+
+.institution-motto {
+    font-size: 1.1rem;
+    color: #8F121A;
+    font-style: italic;
+    margin: 0;
+    border-top: 2px solid #FCCC00;
+    padding-top: 5px;
+    display: inline-block;
+}
+
+.header-location {
+    text-align: right;
+
+}
+
+.location-text {
+    font-size: 0.9rem;
+    color: #333;
+    margin: 10px 0 0 0;
+}
+
+.current-date {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-title, .header-location {
+        text-align: center;
+    }
+    
+    .current-date {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+/* =========================
+   BOTONES SOCIALES (SOLO LOGOS)
+   ========================= */
+.social-buttons {
+    margin: 0px 0;
+    margin-left: 1050px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.social-icon:hover {
+    transform: scale(1.1) translateY(-3px);
+}
+
+/* Efectos de color al hover */
+.social-icon:hover img[alt="Facebook"] {
+    filter: drop-shadow(0 2px 4px rgba(24, 119, 242, 0.3));
+}
+
+.social-icon:hover img[alt="YouTube"] {
+    filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.3));
+}
+
+.social-icon:hover img[alt="WhatsApp"] {
+    filter: drop-shadow(0 2px 4px rgba(37, 211, 102, 0.3));
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .social-buttons {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
 
 .logo h1 {
     font-size: 1.5rem;
@@ -98,7 +243,6 @@ body {
     position: relative;
     z-index: 1;
 }
-
 /* Animación para botón de regreso en el logo */
 .header .logo a {
     transition: all 0.3s ease;
