@@ -162,12 +162,7 @@ body {
 }
 
 /* Carrusel principal */
-.carousel {
-    position: relative;
-    max-width: 50%;
-    overflow: hidden;
-    margin: auto;
-}
+
 
 .carousel-inner {
     display: flex;
@@ -261,13 +256,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 40px auto;
-    max-width: 600px;
+    margin: -4px auto;
+    max-width: 1800px; /* antes 1000px */
     position: relative;
 }
 .carousel-slides {
-    width: 400px;
-    height: 250px;
+    width: 600px;   /* antes 400px */
+    height: 300px;  /* antes 250px */
     overflow: hidden;
     position: relative;
     border-radius: 10px;
@@ -555,4 +550,33 @@ body {
     object-fit: contain;
     display: block;
     margin: 0 auto;
+}
+/* Botones laterales institucionales (izquierda y derecha) */
+.institutional-button {
+    display: flex;
+    align-items: center;
+    background-color: #fff; /* fondo blanco por defecto */
+    color: #000; /* texto negro */
+    border: 2px solid #801919; /* borde rojo claro */
+    border-radius: 8px;
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+}
+
+.institutional-button:hover {
+    background-color: #FEF200; /* fondo amarillo */
+    color: #fff; /* texto blanco */
+    transform: translateY(-5px); /* efecto de subida */
+}
+
+.institutional-button img {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    transition: filter 0.3s ease;
 }
