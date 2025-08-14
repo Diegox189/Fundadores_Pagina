@@ -1,17 +1,17 @@
 const tecnicas = [
     {
         nombre: "BASE DE DATOS",
-        img: "../Static/img/logo_bd.png",
+        img: "../Static/img/base datos.png",
         descripcion: "La media técnica en Base de Datos te enseña a organizar, gestionar y analizar información digital de manera eficiente y segura."
     },
     {
         nombre: "IOT",
-        img: "../Static/img/logo_iot.png",
+        img: "../Static/img/iot.png",
         descripcion: "La media técnica en IoT (Internet de las Cosas) te introduce al mundo de los dispositivos conectados, automatización y tecnología inteligente."
     },
     {
         nombre: "DISEÑO GRAFICO",
-        img: "../Static/img/logo_dg.png",
+        img: "../Static/img/diseño grafico.png",
         descripcion: "La media técnica en Diseño Gráfico te permite desarrollar habilidades creativas para comunicar ideas visualmente usando herramientas digitales."
     }
 ];

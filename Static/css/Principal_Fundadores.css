@@ -8,22 +8,161 @@
 /* Fuente base y fondo institucional con degradado */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(143,18,26,1) 53%, rgba(252,204,0,1) 100%);
 }
 
-/* Header y logo principal */
+/* =========================
+   ESTILOS DEL HEADER
+   ========================= */
+.header {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.logo-link {
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.logo-img {
+    height: 120px;
+}
+
+.header-title {
+    text-align: left;
+    flex-grow: 1;
+    font-style: italic;
+}
+
+.institution-name {
+    font-size: 1.2rem;
+    color: #8F121A;
+    margin: 0;
+    font-weight: bold;
+}
+
+.institution-subname {
+    font-size: 1.5rem;
+    color: #8F121A;
+    margin: 0;
+    font-weight: bold;
+}
+
+.institution-motto {
+    font-size: 1.1rem;
+    color: #8F121A;
+    font-style: italic;
+    margin: 0;
+    border-top: 2px solid #FCCC00;
+    padding-top: 5px;
+    display: inline-block;
+}
+
+.header-location {
+    text-align: right;
+
+}
+
+.location-text {
+    font-size: 0.9rem;
+    color: #333;
+    margin: 10px 0 0 0;
+}
+
+.current-date {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-title, .header-location {
+        text-align: center;
+    }
+    
+    .current-date {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+/* =========================
+   BOTONES SOCIALES (SOLO LOGOS)
+   ========================= */
+.social-buttons {
+    margin: 0px 0;
+    margin-left: 1050px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 36px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.social-icon:hover {
+    transform: scale(1.1) translateY(-3px);
+}
+
+/* Efectos de color al hover */
+.social-icon:hover img[alt="Facebook"] {
+    filter: drop-shadow(0 2px 4px rgba(24, 119, 242, 0.3));
+}
+
+.social-icon:hover img[alt="YouTube"] {
+    filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.3));
+}
+
+.social-icon:hover img[alt="WhatsApp"] {
+    filter: drop-shadow(0 2px 4px rgba(37, 211, 102, 0.3));
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .social-buttons {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
 
 .logo h1 {
     font-size: 1.5rem;
 }
 
 /* Carrusel principal */
-.carousel {
-    position: relative;
-    max-width: 50%;
-    overflow: hidden;
-    margin: auto;
-}
+
 
 .carousel-inner {
     display: flex;
@@ -67,9 +206,20 @@ body {
 
 /* Enlaces principales */
 .enlace {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #8F121A;
+    color: #fff;
+    border: 2px solid #FCCC00;
+    border-radius: 8px;
     text-decoration: none;
-    color: white;
-    margin-left: 0;
+    font-size: 0.7rem;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+.enlace:hover {
+    background-color: #FCCC00;
+    color: #8F121A;
+    transform: scale(1.05);
 }
 
 /* Jerarquía de capas (z-index) */
@@ -88,7 +238,6 @@ body {
     position: relative;
     z-index: 1;
 }
-
 /* Animación para botón de regreso en el logo */
 .header .logo a {
     transition: all 0.3s ease;
@@ -107,13 +256,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 40px auto;
-    max-width: 600px;
+    margin: -4px auto;
+    max-width: 1800px; 
     position: relative;
 }
 .carousel-slides {
-    width: 400px;
-    height: 250px;
+    width: 600px;  
+    height: 350px; 
     overflow: hidden;
     position: relative;
     border-radius: 10px;
@@ -134,25 +283,59 @@ body {
     height: 100%;
     object-fit: cover;
 }
+/* Flechas del carrusel principal con estilo similar al index */
 .carousel-btn {
-    background: #fff;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 10px 16px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transition: background 0.2s;
-    z-index: 2;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 80%;
+    z-index: 100;
+    transition: background 0.5s, color 0.5s;
 }
-.carousel-btn:hover {
-    background: #f0f0f0;
-}
+
 .carousel-btn.left {
-    margin-right: 10px;
+    left: 18px;
 }
+
 .carousel-btn.right {
-    margin-left: 10px;
+    right: 18px;
+}
+
+.carousel-btn:hover {
+    background: linear-gradient(150deg, rgba(107, 2, 2, 1), rgba(252, 204, 0, 1));
+    color: white;
+}
+
+/* NUEVO: animación de destello blanco al hacer clic */
+.carousel-btn:active {
+    background: #fff;
+    color: #8F121A;
+    animation: btnFlash 0.25s;
+}
+
+@keyframes btnFlash {
+    0% {
+        background: #fff;
+        color: #8F121A;
+    }
+    80% {
+        background: #fff;
+        color: #8F121A;
+    }
+    100% {
+        background: transparent;
+        color: #fff;
+    }
 }
 
 /* =========================
@@ -374,10 +557,6 @@ body {
 .top-bar.row .column {
   flex: none;
 }
-/* Color especial para el título de Media Técnica */
-.title-media-color {
-    color: rgb(108, 96, 223);    
-}
 .institucional-logos {
     display: flex;
     flex-wrap: wrap;
@@ -405,4 +584,91 @@ body {
     object-fit: contain;
     display: block;
     margin: 0 auto;
+}
+/* Botones laterales institucionales (izquierda y derecha) */
+.institutional-button {
+    display: flex;
+    align-items: center;
+    background-color: #fff; /* fondo blanco por defecto */
+    color: #000; /* texto negro */
+    border: 2px solid #801919; /* borde rojo claro */
+    border-radius: 8px;
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+}
+
+.institutional-button:hover {
+    background-color: #FEF200; /* fondo amarillo */
+    color: #fff; /* texto blanco */
+    transform: translateY(-5px); /* efecto de subida */
+}
+
+.institutional-button img {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    transition: filter 0.3s ease;
+}
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-overlay {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 24px 32px;
+    border-radius: 12px;
+    max-width: 70%;
+}
+
+.carousel-overlay h2 {
+    margin: 0 0 12px 0;
+    font-size: 2rem;
+}
+
+.carousel-overlay p {
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+}
+
+.carousel-btn-maps {
+    display: inline-block;
+    background: #FCCC00;
+    color: #8F121A;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: background 0.2s, color 0.2s;
+}
+
+.carousel-btn-maps:hover {
+    background: #8F121A;
+    color: #FCCC00;
+}
+.carousel-slide.carousel-anim {
+    animation: slideInRight 0.7s;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

@@ -1,103 +1,235 @@
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(143,18,26,1) 53%, rgba(252,204,0,1) 100%);
+/* ============================
+   Estilos Globales
+============================ */
+body, html {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f5f5f5, #e3e3e3);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-/* Contenedor principal de la sección de media técnica */
+
+/* ============================
+   Header Institucional
+============================ */
+header {
+    padding: 10px 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+header .enlace {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #8F121A;
+    color: #fff;
+    border: 2px solid #FCCC00;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+header .enlace:hover {
+    background-color: #FCCC00;
+    color: #8F121A;
+    transform: scale(1.05);
+}
+
+header h1 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* ============================
+   Contenedor principal
+============================ */
 #media-container {
-    margin-top: 60px;
+    margin-top: 40px;
+    padding: 20px;
 }
-/* Distribución de los logos en una fila centrada y responsiva */
+
+/* ============================
+   Grid de tarjetas
+============================ */
 .media-grid {
     display: flex;
     justify-content: center;
-    gap: 60px;
     flex-wrap: wrap;
+    gap: 40px;
 }
-/* Tarjeta individual para cada logo y su botón */
+
+/* ============================
+   Tarjetas individuales
+============================ */
 .media-card {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
+                -8px -8px 16px rgba(255, 255, 255, 0.7);
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #FCCC00;
+    animation: fadeInUp 0.6s ease;
 }
-/* Imagen del logo en la vista principal */
+
+.media-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================
+   Imagen de la tarjeta
+============================ */
 .media-card img {
     width: 120px;
     height: 120px;
     object-fit: contain;
-    display: block;
-    margin: auto;
-    transition: transform 0.2s;
+    margin: 0 auto 15px auto;
+    transition: transform 0.3s;
 }
-/* Efecto de agrandar el logo al pasar el mouse */
+
 .media-card img:hover {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
-/* Botón "Ver más" debajo de cada logo */
-.media-card button {
-    margin-top: 15px;
-    padding: 8px 20px;
+
+/* ============================
+   Títulos y descripciones
+============================ */
+.media-card h3 {
+    font-size: 1.3rem;
+    color: #8F121A;
+    margin-bottom: 10px;
+}
+
+.media-card p {
     font-size: 1rem;
-    cursor: pointer;
-    border-radius: 8px;
-    border: none;
-    background: #1e88e5;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* ============================
+   Botón institucional
+============================ */
+.media-card button {
+    background-color: #8F121A;
     color: #fff;
-    transition: background 0.2s;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s, transform 0.2s;
 }
-/* Efecto hover para el botón "Ver más" */
+
 .media-card button:hover {
-    background: #1565c0;
+    background-color: #FCCC00;
+    color: #8F121A;
+    transform: scale(1.05);
 }
-/* Vista de detalle: logo grande y contenido centrado */
+
+/* ============================
+   Detalle de técnica
+============================ */
 .media-detalle {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
 }
-/* Logo grande en la vista de detalle */
+
 .media-detalle img {
     width: 180px;
     height: 180px;
     object-fit: contain;
     margin-bottom: 10px;
 }
-/* Título en la vista de detalle */
+
 .media-detalle h2 {
     margin: 20px 0 10px 0;
+    color: #8F121A;
+    font-size: 1.6rem;
 }
-/* Descripción en la vista de detalle */
+
 .media-detalle p {
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
     font-size: 1.1rem;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 15px;
+    border-radius: 10px;
 }
-/* Contenedor de las otras opciones en la vista de detalle */
+
+/* ============================
+   Otras opciones
+============================ */
 .media-opciones {
     display: flex;
-    gap: 40px;
-    margin-top: 30px;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-/* Logos pequeños de las otras opciones */
+
 .media-opciones .media-card img {
     width: 80px;
     height: 80px;
 }
-/* Botón "Volver" en la vista de detalle */
+
+/* ============================
+   Botón "Volver"
+============================ */
 .media-detalle .volver-btn {
     margin-top: 30px;
-    padding: 6px 18px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
     border: none;
-    background: #888;
+    background-color: #8F121A;
     color: #fff;
-    cursor: pointer;
     font-size: 1rem;
-    transition: background 0.2s;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-}
-/* Efecto hover para el botón "Volver" */
 .media-detalle .volver-btn:hover {
-    background: #444;
+    background-color: #FCCC00;
+    color: #8F121A;
+    transform: scale(1.05);
 }
-.enlace {
-    margin-left: 0;
+
+/* ============================
+   Título principal
+============================ */
+.media-titulo {
+    text-align: center;
+    color: #8F121A;
+    margin-top: 20px;
+    font-size: 1.8rem;
+}
+
+/* ============================
+   Animación de entrada
+============================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
