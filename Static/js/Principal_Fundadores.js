@@ -11,9 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let autoInterval;
 
     // Función para mostrar el slide correspondiente según el índice
-    function showCarouselSlide(n) {
+     function showCarouselSlide(n) {
         slides.forEach((slide, i) => {
             slide.classList.toggle('active', i === n);
+            if (i === n) {
+                slide.classList.add('carousel-anim');
+                setTimeout(() => {
+                    slide.classList.remove('carousel-anim');
+                }, 500); // Duración de la animación en ms
+            }
         });
     }
 

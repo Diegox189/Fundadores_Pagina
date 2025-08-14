@@ -283,25 +283,59 @@ body {
     height: 100%;
     object-fit: cover;
 }
+/* Flechas del carrusel principal con estilo similar al index */
 .carousel-btn {
-    background: #fff;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 10px 16px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transition: background 0.2s;
-    z-index: 2;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 80%;
+    z-index: 100;
+    transition: background 0.5s, color 0.5s;
 }
-.carousel-btn:hover {
-    background: #f0f0f0;
-}
+
 .carousel-btn.left {
-    margin-right: 10px;
+    left: 18px;
 }
+
 .carousel-btn.right {
-    margin-left: 10px;
+    right: 18px;
+}
+
+.carousel-btn:hover {
+    background: linear-gradient(150deg, rgba(107, 2, 2, 1), rgba(252, 204, 0, 1));
+    color: white;
+}
+
+/* NUEVO: animación de destello blanco al hacer clic */
+.carousel-btn:active {
+    background: #fff;
+    color: #8F121A;
+    animation: btnFlash 0.25s;
+}
+
+@keyframes btnFlash {
+    0% {
+        background: #fff;
+        color: #8F121A;
+    }
+    80% {
+        background: #fff;
+        color: #8F121A;
+    }
+    100% {
+        background: transparent;
+        color: #fff;
+    }
 }
 
 /* =========================
@@ -623,4 +657,18 @@ body {
 .carousel-btn-maps:hover {
     background: #8F121A;
     color: #FCCC00;
+}
+.carousel-slide.carousel-anim {
+    animation: slideInRight 0.7s;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
