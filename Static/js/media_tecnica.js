@@ -3,21 +3,11 @@ const tecnicas = [
         nombre: "BASE DE DATOS",
         img: "../Static/img/base datos.png",
         descripcion: "La media técnica en Bases de Datos está enfocada en enseñar a los estudiantes cómo organizar, administrar y proteger la información de manera eficiente. Durante la formación se aprenden conceptos fundamentales como modelado de datos, diagramas entidad-relación y normalización, junto con el uso práctico de sistemas gestores como MySQL, SQL Server u Oracle. <br> <br> El objetivo es que el estudiante desarrolle competencias técnicas para crear, consultar y mantener bases de datos, aplicando buenas prácticas de seguridad y optimización. Además, se trabajan habilidades para resolver problemas reales de almacenamiento y manejo de información, que son esenciales en empresas e instituciones. <br> <br>Esta formación brinda una base sólida para desempeñarse como auxiliar en áreas de sistemas, soporte técnico o análisis de información, y también prepara para continuar estudios en carreras de ingeniería, ciencia de datos o desarrollo de software.",
-         carrusel: [
-            "../Static/img/20250814_131403.jpg",
-            "../Static/img/20250814_132701.jpg",
-            "../Static/img/20250814_132815.jpg",
-        ]
     },
     {
         nombre: "IOT",
         img: "../Static/img/iot.png",
         descripcion: "La media técnica en Internet de las Cosas (IoT) busca formar a los estudiantes en el diseño y manejo de sistemas capaces de conectar dispositivos físicos a internet para recopilar, procesar y compartir información. En el programa se estudian fundamentos de electrónica básica, sensores, redes de comunicación y programación de microcontroladores como Arduino o ESP32.<br> <br>El propósito principal es que los estudiantes comprendan cómo integrar hardware y software para crear soluciones prácticas, como sistemas de domótica, monitoreo ambiental, control de dispositivos a distancia o aplicaciones en la industria. Además, se promueve el desarrollo de la creatividad y la innovación tecnológica, aplicadas a la vida cotidiana y al sector productivo.<br> <br>Esta formación abre oportunidades para trabajar en proyectos de automatización, soporte técnico en sistemas inteligentes o emprendimientos tecnológicos, y también sirve como base para continuar estudios en ingeniería electrónica, telecomunicaciones o ciencia de datos.",
-         carrusel: [
-            "../Static/img/IOT.JPG",
-            "../Static/img/20250814_132701.jpg",
-            "../Static/img/20250814_132815.jpg",
-        ]
     },
     {
         nombre: "DISEÑO GRAFICO",
@@ -30,6 +20,7 @@ const tecnicas = [
         ]
     }
 ];
+
 // ===============================
 // Renderiza la vista principal con los 3 logos y sus botones
 // ===============================
@@ -45,6 +36,7 @@ function renderMain() {
     html += `</div>`;
     document.getElementById('media-container').innerHTML = html;
 }
+
 // ===============================
 // Renderiza la vista detalle de una técnica seleccionada
 // ===============================
@@ -72,9 +64,9 @@ function showDetalle(idx) {
                     </div>
                 `).join('')}
             </div>
-            <div class="controles">
-                <button class="prev-btn">❮</button>
-                <button class="next-btn">❯</button>
+            <div class="controles-container">
+                <button class="carousel-btn prev-btn">❮</button>
+                <button class="carousel-btn next-btn">❯</button>
             </div>
         </div>
         `;
@@ -115,18 +107,18 @@ function initCarrusel() {
         slides[currentIndex].classList.remove('activo');
         currentIndex = (nuevoIndex + slides.length) % slides.length;
         slides[currentIndex].classList.add('activo');
+        updateSlidePosition();
     }
     
-    // Eventos para los botones
+    function updateSlidePosition() {
+        const translateX = -currentIndex * 100; // Desplazamiento
+        slides.forEach(slide => {
+            slide.style.transform = `translateX(${translateX}%)`;
+        });
+    }
+
     prevBtn.addEventListener('click', () => cambiarSlide(currentIndex - 1));
     nextBtn.addEventListener('click', () => cambiarSlide(currentIndex + 1));
-        
-    // Pausar al hacer hover
-    const carrusel = document.querySelector('.carrusel-fundadores');
-    carrusel.addEventListener('mouseenter', () => clearInterval(interval));
-    carrusel.addEventListener('mouseleave', () => {
-        interval = setInterval(() => cambiarSlide(currentIndex + 1), 5000);
-    });
 }
 
 // ===============================
@@ -139,4 +131,3 @@ document.addEventListener('DOMContentLoaded', renderMain);
 // ===============================
 window.showDetalle = showDetalle;
 window.renderMain = renderMain;
-
