@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../Static/css/Principal_Fundadores.css">
     <link rel="shortcut icon" href="../Static/img/icono.png.png" type="image/x-icon">
     <link rel="stylesheet" href="../Static/css/columms.css">
-    <link rel="stylesheet" href="../Static/js/Principal_Fundadores.js">
+
 </head>
 <body>
   <header class="header">
@@ -41,13 +41,104 @@
     </a>
 </div>
 </header>
-  <br>
-    
-  <!-- Fila principal: columnas de botones y carrusel en el centro -->
-   
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
-       <!-- Columna izquierda con botones -->
+ <br>
+    <!-- Contenido principal -->
+<main id="contenido-principal" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
+
+        
+                      <!-- Columna izquierda con botones -->
+
         <div class="botones-institucionales" style="min-width:220px; max-width:260px; width:100%; display:flex; flex-direction:column; gap:18px;">
+
+                              <!-- Botón 1 con submenu -->
+
+<div class="dropdown" style="position:relative;">
+    <a href="#" class="institutional-button">
+        <img src="../Static/img/master2000.png" alt="Botón 1" /> 
+        <span>
+            Botón 1
+            <br />
+            <small style="font-size:0.8rem; color:#666;">Descripción</small>
+        </span>
+        <span style="color:#666; font-size:0.8rem;">▼</span>
+    </a>
+        <!-- Submenu -->
+    <div class="submenu">
+        <a href="URL_DE_COMPROMISOS" target="_blank" rel="noopener noreferrer">Compromisos</a>
+        <a href="#" class="btn-dinamico"
+       data-titulo="Valores" 
+       data-texto="x">Valores</a>
+    </div>
+</div>
+           <!-- Botón 2 -->
+<div>
+    <a href="#" class="institutional-button btn-dinamico" 
+       data-titulo="Historia de la Institución" 
+       data-texto="Fundada en 1985, la I.E. Fundadores ha formado líderes con excelencia académica y humana.">
+        <img src="../Static/img/master2000.png" alt="Botón 2" /> 
+        <span>
+            Botón 2<br />
+            <small style="font-size:0.8rem; color:#666;">Historia</small>
+        </span>
+    </a>
+</div>
+
+<!-- Botón 3 -->
+<div>
+    <a href="#" class="institutional-button btn-dinamico" 
+       data-titulo="Misión Institucional" 
+       data-texto="Formar estudiantes íntegros, críticos y comprometidos con su comunidad y el entorno.">
+        <img src="../Static/img/master2000.png" alt="Botón 3" /> 
+        <span>
+            Botón 3<br />
+            <small style="font-size:0.8rem; color:#666;">Misión</small>
+        </span>
+    </a>
+</div>
+            
+            <!-- Botón 4 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 4" /> 
+                    <span>
+                        Botón 4<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Botón 5 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 5" /> 
+                    <span>
+                        Botón 5<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Botón 6 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 6" /> 
+                    <span>
+                        Botón 6<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
+             <!-- Botón Master2000 (ahora en la columna de botones) -->
+            <div>
+                <a href="https://login.master2000.net/ingreso/?A=105001026697&&" target="_blank" rel="noopener noreferrer" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Software Académico Master2000" /> 
+                    <span>
+                        Master2000<br />
+                        <small style="font-size:0.8rem; color:#666;">Software Académico</small>
+                    </span>
+                </a>
+            </div>
             <!-- Botón Revista -->
             <div class="dropdown">
                 <a href="index2.php?id=134089&idmenutipo=8078" class="institutional-button">
@@ -72,8 +163,8 @@
             </div>
             <!-- Botón Notifundadores -->
             <div class="dropdown" style="position:relative;">
-                <a href="index2.php?id=136211&idmenutipo=8078" class="institutional-button">
-                    <img src="img/notifundadores.png" alt="Periódico" /> 
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/notifundadores.png" alt="Periódico" /> 
                     <span style="flex:1;">
                         Periódico escolar<br>
                         <small style="font-size:0.8rem; color:#666;">Notifundadores</small>
@@ -81,7 +172,7 @@
                     <span style="color:#666; font-size:0.8rem;">▼</span>
                 </a>
                 <div class="submenu" style="display:none; position:absolute; width:100%; background:#fff; border:1px solid #ddd; border-radius:0 0 8px 8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); z-index:1000;">
-                    <a href="#" style="display:block; padding:8px 15px; color:#333; text-decoration:none;">Ediciones</a>
+                    <a href="#" style="display:block; padding:8px px; color:#333; text-decoration:none;">Ediciones</a>
                     <div style="padding-left:15px;">
                         <a href="https://modulo.master2000.net/recursos/uploads/557/2022/Notifundadores14102020compressed.pdf" target="_blank" rel="noopener noreferrer" style="display:block; padding:8px 15px; color:#333; text-decoration:none;">Edición 2020</a>
                         <a href="https://modulo.master2000.net/recursos/uploads/557/2022/Notifundadores20212Correcciones.pdf" target="_blank" rel="noopener noreferrer" style="display:block; padding:8px 15px; color:#333; text-decoration:none;">Edición 2021</a>
@@ -90,16 +181,6 @@
                         <a href="https://modulo.master2000.net/recursos/uploads/557/2024/2024NOTIFUNDADORES.pdf" target="_blank" rel="noopener noreferrer" style="display:block; padding:8px 15px; color:#333; text-decoration:none;">Edición 2024</a>
                     </div>
                 </div>
-            </div>
-            <!-- Botón Master2000 (ahora en la columna de botones) -->
-            <div>
-                <a href="https://login.master2000.net/ingreso/?A=105001026697&&" target="_blank" rel="noopener noreferrer" class="institutional-button">
-                    <img src="../Static/img/master2000.png" alt="Software Académico Master2000" /> 
-                    <span>
-                        Master2000<br />
-                        <small style="font-size:0.8rem; color:#666;">Software Académico</small>
-                    </span>
-                </a>
             </div>
         </div>
         <!-- Carrusel en el centro -->
@@ -119,7 +200,7 @@
                         <div class="carousel-overlay">
                             <h2>¡Bienvenido a la I.E. Fundadores!</h2>
                             <p>Descubre nuestra institución y su entorno educativo.</p>
-                            <a href="https://www.google.com/maps/place/I.E.+Fundadores/@6.2594617,-75.6167953,74m/data=!3m1!1e3!4m6!3m5!1s0x8e44297cc7c4af4d:0x2e0d1e6ae43fd6db!8m2!3d6.2593919!4d-75.6165848!16s%2Fg%2F11c1nddn57?entry=ttu&g_ep=EgoyMDI1MDgxMS4wIKXMDSoASAFQAw%3D%3D"
+                            <a href="https://www.google.com/maps/place/I.E.+Fundadores/@6.2594617,-75.6167953,74m/data=!3m1!1e3!4m6!3m5!1s0x8e44297cc7c4af4d:0x2e0d1e6ae43fd6db!8m2!3d6.2593919!4d-75.6165848!16s%2Fg%2F11c1nddn57?entry=ttu&g_ep=EgoyMDI5MDgxMS4wIKXMDSoASAFQAw%3D%3D"
                                target="_blank" class="carousel-btn-maps">
                                Ver ubicación en Google Maps
                             </a>
@@ -135,9 +216,76 @@
                 </div>
                 <button class="carousel-btn right" id="carousel-next">&#10095;</button>
             </div>
+            
         </div>
         <!-- Columna derecha con botones -->
         <div style="min-width:220px; max-width:260px; width:100%; display:flex; flex-direction:column; gap:18px;">
+            <!-- Botón 7 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 7" /> 
+                    <span>
+                        Botón 7<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Botón 8 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 8" /> 
+                    <span>
+                        Botón 8<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Botón 9 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 9" /> 
+                    <span>
+                        Botón 9<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Botón 10 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 10" /> 
+                    <span>
+                        Botón 10<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Botón 11 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 11" /> 
+                    <span>
+                        Botón 11<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Botón 12 -->
+            <div>
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Botón 12" /> 
+                    <span>
+                        Botón 12<br />
+                        <small style="font-size:0.8rem; color:#666;">Descripción</small>
+                    </span>
+                </a>
+            </div>
+            
             <!-- Botón Proyecto Cultura Fundadores -->
             <div class="dropdown" style="position:relative;">
                 <a href="#" class="institutional-button">
@@ -163,14 +311,14 @@
             <!-- Botón PEI -->
             <div>
                 <a href="https://modulo.master2000.net/recursos/uploads/557/2022/PROYECTOEDUCATIVOINSTITUCIONALACTUALIZADO.pdf" target="_blank" rel="noopener noreferrer" class="institutional-button">
-                    <img src="img/pei.png" alt="PEI" />
+                    <img src="../Static/img/pei.png" alt="PEI" />
                     <span>P.E.I.</span>
                 </a>
             </div>
             <!-- Botón SIEE -->
             <div>
                 <a href="https://modulo.master2000.net/recursos/uploads/557/2024/SIEEI.EFUNDADORES2024ULTIMAACTUALIZACION.pdf" target="_blank" rel="noopener noreferrer" class="institutional-button">
-                    <img src="img/siee.png" alt="SIEE" />
+                    <img src="../Static/img/siee.png" alt="SIEE" />
                     <span>S.I.E.E.</span>
                 </a>
             </div>
@@ -181,10 +329,17 @@
                     <span>Manual de convivencia</span>
                 </a>
             </div>
+            <!-- Botón para ir a Fundadores Flask -->
+            <div>
+              <a target="_blank"> <button onclick="window.location.href='http://localhost/Fundadores_Pagina/Servicio_social/'"  class="institutional-button">Ir a Servicio Social</button>    
+            </div>
         </div>
     </div> 
-    <!-- Script principal del carrusel y lógica de la página principal -->
-    <script src="../Static/js/Principal_Fundadores.js"></script>
+</main>
+
+<!-- CONTENIDO DINÁMICO -->
+<div id="contenido-dinamico" style="display:none; min-height:60vh; padding:40px; text-align:center;">
+</div>
 
     <!-- Sección de enlaces institucionales -->
     <div class="institucional-logos">
@@ -213,17 +368,7 @@
             <img src="../Static/img/secop.png" alt="Secop II">
         </a>
     </div>
-
-    <script>
-    // Agregar interactividad a los dropdowns
-    document.querySelectorAll('.dropdown').forEach(dropdown => {
-        dropdown.addEventListener('mouseenter', () => {
-            dropdown.querySelector('.submenu').style.display = 'block';
-        });
-        dropdown.addEventListener('mouseleave', () => {
-            dropdown.querySelector('.submenu').style.display = 'none';
-        });
-    });
-    </script>
+                 <!-- Script principal del carrusel y lógica de la página principal -->
+       <script src="../Static/js/Principal_Fundadores.js"></script>
 </body>
 </html>
