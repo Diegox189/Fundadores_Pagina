@@ -51,6 +51,7 @@ a:hover{ text-decoration: underline; }
   position: sticky; top:0; z-index: 2;
 }
 .brand{font-size: large; font-weight: 800; letter-spacing:.5px; }
+
 .topnav a{ margin: 0 8px; padding: 8px 12px; border-radius: 10px; background: transparent; border:1px solid transparent; }
 
 

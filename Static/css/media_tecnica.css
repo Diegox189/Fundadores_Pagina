@@ -233,10 +233,6 @@ header h1 {
         transform: translateY(0);
     }
 }
-/* ============================
-   CARRUSEL COMPACTO - CSS COMPLETO
-============================ */
-
 /* Contenedor principal del carrusel */
 .carrusel-fundadores {
     width: 100%;
@@ -245,7 +241,6 @@ header h1 {
     position: relative;
     background-color: transparent;
 }
-
 /* Título del carrusel */
 .carrusel-fundadores h3 {
     color: #8F121A;
@@ -264,7 +259,6 @@ header h1 {
     background-color: transparent;
     border-radius: 4px;
 }
-
 /* Slides individuales */
 .carrusel-fundadores .slide {
     width: 100%;
@@ -284,9 +278,9 @@ header h1 {
 .carrusel-fundadores .slide.activo {
     opacity: 1;
 }
-
 /* Imágenes dentro del slide */
 .carrusel-fundadores .slide img {
+
     max-width: 98%;
     max-height: 98%;
     width: auto;
@@ -398,4 +392,153 @@ header h1 {
     left: -100%;   /* Sale hacia la izquierda */
     opacity: 0;
     z-index: 0;
+}
+.controles-container .carousel-btn {
+    background: linear-gradient(145deg, #8F121A, #a52c34);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(143, 18, 26, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.controles-container .carousel-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.controles-container .carousel-btn:hover::before {
+    left: 100%;
+}
+
+.controles-container .carousel-btn:hover {
+    background: linear-gradient(145deg, #FCCC00, #ffd700);
+    color: #8F121A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(252, 204, 0, 0.4);
+}
+
+/* Indicadores de posición */
+.indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 15px;
+}
+
+.indicador {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.indicador::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: #8F121A;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease;
+}
+
+.indicador.activo {
+    background: #FCCC00;
+    border-color: #8F121A;
+    transform: scale(1.2);
+}
+
+.indicador.activo::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.indicador:hover {
+    background: #8F121A;
+    transform: scale(1.1);
+}
+
+/* Efecto de overlay para imágenes */
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0,0,0,0.1), rgba(0,0,0,0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.slide:hover::before {
+    opacity: 1;
+}
+
+/* Animación de entrada para el carrusel */
+@keyframes carouselEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.carrusel-fundadores {
+    animation: carouselEntrance 0.8s ease-out;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .carrusel-fundadores {
+        margin: 20px 15px;
+        padding: 15px;
+    }
+    
+    .contenido-carrusel {
+        height: 150px;
+    }
+    
+    .controles-container {
+        gap: 15px;
+    }
+    
+    .controles-container .carousel-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .indicador {
+        width: 14px;
+        height: 14px;
+    }
 }

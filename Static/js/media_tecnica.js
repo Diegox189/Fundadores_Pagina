@@ -13,7 +13,8 @@ const tecnicas = [
         nombre: "IOT",
         img: "../Static/img/iot.png",
         descripcion: "La media técnica en Internet de las Cosas (IoT) busca formar a los estudiantes en el diseño y manejo de sistemas capaces de conectar dispositivos físicos a internet para recopilar, procesar y compartir información. En el programa se estudian fundamentos de electrónica básica, sensores, redes de comunicación y programación de microcontroladores como Arduino o ESP32.<br> <br>El propósito principal es que los estudiantes comprendan cómo integrar hardware y software para crear soluciones prácticas, como sistemas de domótica, monitoreo ambiental, control de dispositivos a distancia o aplicaciones en la industria. Además, se promueve el desarrollo de la creatividad y la innovación tecnológica, aplicadas a la vida cotidiana y al sector productivo.<br> <br>Esta formación abre oportunidades para trabajar en proyectos de automatización, soporte técnico en sistemas inteligentes o emprendimientos tecnológicos, y también sirve como base para continuar estudios en ingeniería electrónica, telecomunicaciones o ciencia de datos.",
-         carrusel: [
+
+        carrusel: [
             "../Static/img/IOT.JPG",
             "../Static/img/20250814_132701.jpg",
             "../Static/img/20250814_132815.jpg",
@@ -30,6 +31,7 @@ const tecnicas = [
         ]
     }
 ];
+
 // ===============================
 // Renderiza la vista principal con los 3 logos y sus botones
 // ===============================
@@ -45,6 +47,7 @@ function renderMain() {
     html += `</div>`;
     document.getElementById('media-container').innerHTML = html;
 }
+
 // ===============================
 // Renderiza la vista detalle de una técnica seleccionada
 // ===============================
@@ -72,6 +75,7 @@ function showDetalle(idx) {
                     </div>
                 `).join('')}
             </div>
+<<<<<<< HEAD
             <div class="controles">
                 <button class="prev-btn">❮</button>
                 <button class="next-btn">❯</button>

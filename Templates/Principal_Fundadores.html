@@ -83,7 +83,8 @@
             </div>
             <!-- Botón Notifundadores -->
             <div class="dropdown" style="position:relative;">
-                <a href="#" class="institutional-button">
+             <a href="#" class="institutional-button">
+
                     <img src="../Static/img/notifundadores.png" alt="Periódico" /> 
                     <span style="flex:1;">
                         Periódico escolar<br>
@@ -137,8 +138,10 @@
                 </div>
                 <button class="carousel-btn right" id="carousel-next">&#10095;</button>
             </div>
+            
         </div>
         <!-- Columna derecha con botones -->
+
         <div style="min-width:220px; max-width:260px; width:100%; display:flex; flex-direction:column; gap: 18px;">
              
             <!-- Botón Servicio Social -->
@@ -151,7 +154,6 @@
                 <span>Servicio Social</span>
                 </a>
         </div>
-
             <!-- Botón Proyecto Cultura Fundadores -->
             <div class="dropdown" style="position:relative;">
                 <a href="#" class="institutional-button">
@@ -195,6 +197,10 @@
                     <span>Manual de convivencia</span>
                 </a>
             </div>
+            <!-- Botón para ir a Fundadores Flask -->
+            <div>
+              <a target="_blank"> <button onclick="window.location.href='http://localhost/Fundadores_Pagina/Servicio_social/'"  class="institutional-button">Ir a Servicio Social</button>    
+            </div>
         </div>
     </div> 
 </main>
@@ -202,8 +208,9 @@
 <!-- CONTENIDO DINÁMICO -->
 <div id="contenido-dinamico" style="display:none; min-height:60vh; padding:40px; text-align:center;">
 </div>
-    <!-- Script principal del carrusel y lógica de la página principal -->
+  <!-- Script principal del carrusel y lógica de la página principal -->
     <script src="../Static/js/Principal_Fundadores.js"></script>
+
 
     <!-- Sección de enlaces institucionales -->
     <div class="institucional-logos">
@@ -282,6 +289,5 @@ function mostrarValores() {
 }
 
 </script>
-
 </body>
 </html>
