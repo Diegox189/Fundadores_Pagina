@@ -233,3 +233,169 @@ header h1 {
         transform: translateY(0);
     }
 }
+/* ============================
+   CARRUSEL COMPACTO - CSS COMPLETO
+============================ */
+
+/* Contenedor principal del carrusel */
+.carrusel-fundadores {
+    width: 100%;
+    max-width: 600px;
+    margin: 15px auto 10px;
+    position: relative;
+    background-color: transparent;
+}
+
+/* Título del carrusel */
+.carrusel-fundadores h3 {
+    color: #8F121A;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Contenedor de slides */
+.contenido-carrusel {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+/* Slides individuales */
+.carrusel-fundadores .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+/* Slide activo */
+.carrusel-fundadores .slide.activo {
+    opacity: 1;
+}
+
+/* Imágenes dentro del slide */
+.carrusel-fundadores .slide img {
+    max-width: 98%;
+    max-height: 98%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 2px;
+}
+
+/* Controles de navegación */
+.controles {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 8px;
+    padding: 5px;
+}
+
+/* Botones de navegación */
+.controles button {
+    background-color: #8F121A;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Efecto hover para botones */
+.controles button:hover {
+    background-color: #FCCC00;
+    color: #8F121A;
+    transform: scale(1.05);
+}
+
+/* Indicadores de posición (opcional) */
+.indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.indicador {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.indicador.activo {
+    background-color: #8F121A;
+    transform: scale(1.1);
+}
+
+/* ============================
+   VERSIÓN ULTRA COMPACTA (opcional)
+============================ */
+/*
+.carrusel-fundadores {
+    max-width: 500px;
+    margin: 10px auto 5px;
+}
+
+.contenido-carrusel {
+    height: 300px;
+}
+
+.carrusel-fundadores h3 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+*/
+/* Animación para el carrusel de media_tecnica.js */
+.carrusel-fundadores .contenido-carrusel {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Ajusta según tu diseño */
+    overflow: hidden;
+}
+
+.carrusel-fundadores .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%; /* Todas inician fuera de la vista */
+    opacity: 0;
+    transition: all 1s ease-in-out; /* Movimiento + opacidad */
+    z-index: 0;
+}
+
+.carrusel-fundadores .slide.activo {
+    left: 0;       /* Entra a la vista */
+    opacity: 1;
+    z-index: 1;
+}
+
+.carrusel-fundadores .slide.saliente {
+    left: -100%;   /* Sale hacia la izquierda */
+    opacity: 0;
+    z-index: 0;
+}

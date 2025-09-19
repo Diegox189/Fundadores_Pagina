@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../Static/css/Principal_Fundadores.css">
     <link rel="shortcut icon" href="../Static/img/icono.png.png" type="image/x-icon">
     <link rel="stylesheet" href="../Static/css/columms.css">
-    <link rel="stylesheet" href="../Static/js/Principal_Fundadores.js">
 </head>
 <body>
   <header class="header">
@@ -41,13 +40,25 @@
     </a>
 </div>
 </header>
-  <br>
-    
-  <!-- Fila principal: columnas de botones y carrusel en el centro -->
-   
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
+ <br>
+<!-- Contenido principal -->
+<main id="contenido-principal" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
+
+        
        <!-- Columna izquierda con botones -->
+
         <div class="botones-institucionales" style="min-width:220px; max-width:260px; width:100%; display:flex; flex-direction:column; gap:18px;">
+            
+             <!-- Botón Master2000 (ahora en la columna de botones) -->
+            <div>
+                <a href="https://login.master2000.net/ingreso/?A=105001026697&&" target="_blank" rel="noopener noreferrer" class="institutional-button">
+                    <img src="../Static/img/master2000.png" alt="Software Académico Master2000" /> 
+                    <span>
+                        Master2000<br />
+                        <small style="font-size:0.8rem; color:#666;">Software Académico</small>
+                    </span>
+                </a>
+            </div>
             <!-- Botón Revista -->
             <div class="dropdown">
                 <a href="index2.php?id=134089&idmenutipo=8078" class="institutional-button">
@@ -72,8 +83,8 @@
             </div>
             <!-- Botón Notifundadores -->
             <div class="dropdown" style="position:relative;">
-                <a href="index2.php?id=136211&idmenutipo=8078" class="institutional-button">
-                    <img src="img/notifundadores.png" alt="Periódico" /> 
+                <a href="#" class="institutional-button">
+                    <img src="../Static/img/notifundadores.png" alt="Periódico" /> 
                     <span style="flex:1;">
                         Periódico escolar<br>
                         <small style="font-size:0.8rem; color:#666;">Notifundadores</small>
@@ -81,7 +92,7 @@
                     <span style="color:#666; font-size:0.8rem;">▼</span>
                 </a>
                 <div class="submenu" style="display:none; position:absolute; width:100%; background:#fff; border:1px solid #ddd; border-radius:0 0 8px 8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); z-index:1000;">
-                    <a href="#" style="display:block; padding:8px 15px; color:#333; text-decoration:none;">Ediciones</a>
+                    <a href="#" style="display:block; padding:8px px; color:#333; text-decoration:none;">Ediciones</a>
                     <div style="padding-left:15px;">
                         <a href="https://modulo.master2000.net/recursos/uploads/557/2022/Notifundadores14102020compressed.pdf" target="_blank" rel="noopener noreferrer" style="display:block; padding:8px 15px; color:#333; text-decoration:none;">Edición 2020</a>
                         <a href="https://modulo.master2000.net/recursos/uploads/557/2022/Notifundadores20212Correcciones.pdf" target="_blank" rel="noopener noreferrer" style="display:block; padding:8px 15px; color:#333; text-decoration:none;">Edición 2021</a>
@@ -91,17 +102,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Botón Master2000 (ahora en la columna de botones) -->
-            <div>
-                <a href="https://login.master2000.net/ingreso/?A=105001026697&&" target="_blank" rel="noopener noreferrer" class="institutional-button">
-                    <img src="../Static/img/master2000.png" alt="Software Académico Master2000" /> 
-                    <span>
-                        Master2000<br />
-                        <small style="font-size:0.8rem; color:#666;">Software Académico</small>
-                    </span>
-                </a>
-            </div>
         </div>
+        
         <!-- Carrusel en el centro -->
         <div style="flex:1; display: flex; justify-content: center;">
             <div class="carousel-center">
@@ -119,7 +121,7 @@
                         <div class="carousel-overlay">
                             <h2>¡Bienvenido a la I.E. Fundadores!</h2>
                             <p>Descubre nuestra institución y su entorno educativo.</p>
-                            <a href="https://www.google.com/maps/place/I.E.+Fundadores/@6.2594617,-75.6167953,74m/data=!3m1!1e3!4m6!3m5!1s0x8e44297cc7c4af4d:0x2e0d1e6ae43fd6db!8m2!3d6.2593919!4d-75.6165848!16s%2Fg%2F11c1nddn57?entry=ttu&g_ep=EgoyMDI1MDgxMS4wIKXMDSoASAFQAw%3D%3D"
+                            <a href="https://www.google.com/maps/place/I.E.+Fundadores/@6.2594617,-75.6167953,74m/data=!3m1!1e3!4m6!3m5!1s0x8e44297cc7c4af4d:0x2e0d1e6ae43fd6db!8m2!3d6.2593919!4d-75.6165848!16s%2Fg%2F11c1nddn57?entry=ttu&g_ep=EgoyMDI5MDgxMS4wIKXMDSoASAFQAw%3D%3D"
                                target="_blank" class="carousel-btn-maps">
                                Ver ubicación en Google Maps
                             </a>
@@ -137,7 +139,19 @@
             </div>
         </div>
         <!-- Columna derecha con botones -->
-        <div style="min-width:220px; max-width:260px; width:100%; display:flex; flex-direction:column; gap:18px;">
+        <div style="min-width:220px; max-width:260px; width:100%; display:flex; flex-direction:column; gap: 18px;">
+             
+            <!-- Botón Servicio Social -->
+        <div>
+                <a href="http://localhost/Fundadores_Pagina/Servicio_social/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="institutional-button">
+                <img src="../Static/img/servicio_social.png" alt="Servicio Social" />
+                <span>Servicio Social</span>
+                </a>
+        </div>
+
             <!-- Botón Proyecto Cultura Fundadores -->
             <div class="dropdown" style="position:relative;">
                 <a href="#" class="institutional-button">
@@ -163,14 +177,14 @@
             <!-- Botón PEI -->
             <div>
                 <a href="https://modulo.master2000.net/recursos/uploads/557/2022/PROYECTOEDUCATIVOINSTITUCIONALACTUALIZADO.pdf" target="_blank" rel="noopener noreferrer" class="institutional-button">
-                    <img src="img/pei.png" alt="PEI" />
+                    <img src="../Static/img/pei.png" alt="PEI" />
                     <span>P.E.I.</span>
                 </a>
             </div>
             <!-- Botón SIEE -->
             <div>
                 <a href="https://modulo.master2000.net/recursos/uploads/557/2024/SIEEI.EFUNDADORES2024ULTIMAACTUALIZACION.pdf" target="_blank" rel="noopener noreferrer" class="institutional-button">
-                    <img src="img/siee.png" alt="SIEE" />
+                    <img src="../Static/img/siee.png" alt="SIEE" />
                     <span>S.I.E.E.</span>
                 </a>
             </div>
@@ -183,6 +197,11 @@
             </div>
         </div>
     </div> 
+</main>
+
+<!-- CONTENIDO DINÁMICO -->
+<div id="contenido-dinamico" style="display:none; min-height:60vh; padding:40px; text-align:center;">
+</div>
     <!-- Script principal del carrusel y lógica de la página principal -->
     <script src="../Static/js/Principal_Fundadores.js"></script>
 
@@ -225,5 +244,44 @@
         });
     });
     </script>
+
+    <script>
+function mostrarContenido(titulo, texto) {
+    // Ocultar contenido principal
+    document.getElementById("contenido-principal").style.display = "none";
+
+    // Mostrar el dinámico
+    const contenedor = document.getElementById("contenido-dinamico");
+    contenedor.style.display = "block";
+    contenedor.innerHTML = `
+        <h2 style="margin-bottom:20px;">${titulo}</h2>
+        <p style="max-width:800px; margin:0 auto; font-size:1.1rem; line-height:1.6;">
+            ${texto}
+        </p>
+        <br>
+        <button onclick="regresar()" style="padding:10px 20px; cursor:pointer;">Regresar</button>
+    `;
+}
+
+function regresar() {
+    document.getElementById("contenido-principal").style.display = "flex";
+    document.getElementById("contenido-dinamico").style.display = "none";
+}
+
+// Detectar clics en botones dinámicos
+document.querySelectorAll(".btn-dinamico").forEach(boton => {
+    boton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const titulo = boton.dataset.titulo;
+        const texto = boton.dataset.texto;
+        mostrarContenido(titulo, texto);
+    });
+});
+function mostrarValores() {
+    mostrarContenido("Nuestros Valores", "Responsabilidad, respeto, solidaridad y compromiso con la comunidad educativa.");
+}
+
+</script>
+
 </body>
 </html>

@@ -1,0 +1,136 @@
+/* ==========================================================
+   🎨 Guía rápida de colores para este proyecto (Servicio Social)
+   ==========================================================
+   Estas son las variables principales que controlan la apariencia.
+
+   | Variable CSS     | ¿Qué cambia?                                    |
+   |------------------|------------------------------------------------|
+   | --bg             | Fondo general de toda la página.               |
+   | --bg-soft        | Fondo de formularios y áreas secundarias.      |
+   | --card           | Fondo de las tarjetas (cajas de contenido).    |
+   | --text           | Color principal del texto.                     |
+   | --muted          | Texto secundario (descripciones, etiquetas).   |
+   | --primary        | Color principal (encabezado, botones, enlaces).|
+   | --primary-ink    | Texto dentro de los botones primarios.         |
+   | --danger         | Botones o alertas de eliminar / errores.       |
+   | --success        | Estados correctos o confirmaciones.            |
+   | --warn           | Estados de advertencia o avisos.               |
+   | --border         | Líneas de borde en inputs, tablas y tarjetas.  |
+
+   🛠️ Ejemplos:
+   - Fondo oscuro → cambia --bg a #1a1a1a y --text a #ffffff
+   - Botones verdes → cambia --primary a #10b981
+   - Tarjetas grises → cambia --card a #f3f4f6
+   ========================================================== */
+
+:root{
+  --bg: #FFFFFF;           /* Fondo principal blanco */
+  --bg-soft: #fa040048;      /* Rojo institucional para fondos secundarios */
+  --card: #FFFFFF;         /* Blanco para tarjetas */
+  --text: #1A1A1A;         /* Negro para texto principal */
+  --muted: #000000;        /* Vino tinto para texto secundario */
+  --primary: #df0a27;      /* Rojo institucional para botones/enlaces */
+  --primary-ink: #FFFFFF;  /* Blanco para texto en botones primarios */
+  --danger: #E53935;       /* Rojo para alertas/errores */
+  --success: #FFD600;      /* Amarillo para estados correctos */
+  --warn: #FFD600;         /* Amarillo para advertencias */
+  --border: #E53935;       /* Rojo institucional para bordes */
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0,0,0,.10);
+}
+
+* { box-sizing: border-box; }
+html,body{ margin:0; padding:0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif; }
+a{ color: rgb(0, 0, 0); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+.app-header{
+    display:flex; align-items:center; justify-content:space-between;
+  padding:14px 20px; background: white;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top:0; z-index: 2;
+}
+.brand{font-size: large; font-weight: 800; letter-spacing:.5px; }
+.topnav a{ margin: 0 8px; padding: 8px 12px; border-radius: 10px; background: transparent; border:1px solid transparent; }
+
+
+.container{ padding: 24px; max-width: 1150px; margin: 0 auto; }
+
+.app-footer{ text-align:center; padding: 16px; color: var(--muted); border-top: 1px solid var(--border); background: transparent; }
+
+h1{ font-size: 28px; margin: 0 0 14px; }
+h2{ font-size: 20px; margin: 0 0 12px; }
+h3{ margin: 10px 0; }
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.grid-2{ display:grid; grid-template-columns: 1fr; gap: 16px; }
+@media(min-width: 900px){ .grid-2{ grid-template-columns: 1fr 1.3fr; } }
+
+.stats-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin-bottom:16px; }
+@media(max-width: 900px){ .stats-grid{ grid-template-columns: repeat(2,1fr); } }
+.stat{ font-size: 28px; font-weight: 800; }
+.label{ color: var(--muted); }
+
+.form-grid{ display:grid; gap:10px; }
+.form-grid label{ display:grid; gap:6px; font-size: 14px; }
+input, select{
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 12px; outline: none;
+}
+
+input::placeholder{ color: #8a92ac; }
+fieldset.days{ display: grid;
+  grid-template-columns: repeat(7, auto);
+  gap: 8px 24px;
+  align-items: center;border:1px dashed var(--border); border-radius: 12px; padding:10px; }
+fieldset.days legend{ color: black; padding: 0 6px; }
+.check{ display:inline-flex; align-items:center; gap:6px; margin: 6px 10px 0 0; }
+.check-inline{ display:flex; align-items:center; gap:8px; margin-top:8px; }
+
+.actions{ display:flex; gap:10px; margin-top: 6px; }
+.btn{
+  display:inline-block; padding: 10px 12px; border-radius: 10px; border:1px solid var(--border); background: transparent; color: var(--text);
+}
+.btn:hover{ filter: brightness(1.1); }
+.btn-primary{
+  display:inline-block; padding: 10px 12px; border-radius: 10px; border: none;
+  background: var(--primary); color: var(--primary-ink); font-weight: 700;
+}
+.btn-danger{ display:inline-block; padding:10px 12px; border-radius:10px; border:1px solid #ff0000; background:#ffffff; color:#000000; }
+.btn-danger:hover{ filter: brightness(1.1); }
+
+.table-responsive{ overflow:auto; border-radius: 12px; border:1px solid var(--border); }
+table{ width: 100%; border-collapse: collapse; min-width: 700px; }
+th, td{ padding: 10px 12px; border-bottom: 1px solid var(--border); }
+thead th{ background: var(--primary); color: var(--primary-ink); position: sticky; top:0; z-index:1; }
+tbody tr:hover{ background: rgba(255,255,255,.02); }
+.nowrap{ white-space: nowrap; }
+
+.badge{ padding: 3px 8px; border-radius: 999px; font-size: 12px; border:1px solid var(--border); }
+.badge-pending{ background:#2a2133; color:#ddc7ff; border-color:#4a3b67; }
+.badge-activo{ background:#ffffff; color:#08bd53; border-color:#195a48; }
+.badge-completed{ background:#1e2d0f; color:#c7ffa0; border-color:#2f5d19; }
+.badge-cancelled{ background:#3a1c1c; color:#ffb2b2; border-color:#6c2e2e; }
+
+.form-inline{ display:flex; gap:10px; align-items:end; margin-bottom: 14px; flex-wrap: wrap; }
+.muted{ color: black; }
+
+.printable{
+  margin-top:14px; padding: 18px; background: transparent; border:1px solid var(--border); border-radius: 12px;
+}
+.firmas{ margin-top: 22px; }
+
+@media print {
+  body{ background: #fff; color: #000; }
+  .app-header, .app-footer, .topnav, .btn, .btn-primary, .btn-danger { display:none !important; }
+  .card, .printable{ border:none; box-shadow:none; background:#fff; color:#000; }
+  table, th, td{ border-color:#000; }
+}
