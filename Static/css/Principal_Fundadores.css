@@ -33,30 +33,32 @@ body {
 
 .logo-img {
     height: 120px;
+    width: auto;
 }
 
 .header-title {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 500;
     text-align: left;
     flex-grow: 1;
-    font-style: italic;
 }
 
 .institution-name {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     color: #8F121A;
     margin: 0;
     font-weight: bold;
 }
 
 .institution-subname {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #8F121A;
     margin: 0;
     font-weight: bold;
 }
 
 .institution-motto {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #8F121A;
     font-style: italic;
     margin: 0;
@@ -109,9 +111,8 @@ body {
    ========================= */
 .social-buttons {
     margin: 0px 0;
-    margin-left: 1170px;
+    justify-content: flex-end;
     display: flex;
-    justify-content: center;
     gap: 10px;
 }
 
