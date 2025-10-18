@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sección de Proyectos</title>
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --panel: #0f1520;
+      --card: #121a27;
+      --card-hover: #162132;
+      --text: #e7eef7;
+      --muted: #a7b3c6;
+      --brand: #5ee1a0;
+      --accent: #80b3ff;
+      --ring: rgba(128,179,255,.5);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-xl: 18px;
+      --radius-lg: 14px;
+      --radius-md: 12px;
+      --gap: 16px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f7fb; --panel:#ffffff; --card:#ffffff; --card-hover:#f3f6fb;
+        --text:#0e1726; --muted:#4a5a73; --brand:#0ea5e9; --accent:#7c3aed; --ring:rgba(14,165,233,.35);
+        --shadow: 0 8px 24px rgba(15,23,42,.08);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Inter, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background: radial-gradient(1200px 600px at 20% -10%, #14314d66 0%, transparent 60%), 
+                  radial-gradient(1000px 500px at 120% 10%, #2a5b4a66 0%, transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrapper{
+      max-width: 1200px;
+      margin-inline:auto;
+      padding: 28px 18px 56px;
+    }
+
+    header.section-head{
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size: 13px; letter-spacing:.12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .eyebrow .dot{ width:8px; height:8px; border-radius:999px; background:var(--brand); box-shadow: 0 0 0 6px color-mix(in oklab, var(--brand) 25%, transparent); }
+    h1{
+      font-size: clamp(22px, 3.2vw, 34px);
+      margin: 0;
+    }
+    .sub{
+      color: var(--muted); margin: 0 0 8px; max-width: 70ch;
+    }
+
+    .toolbar{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:4px;
+    }
+    .filter-chip{
+      border: 1px solid color-mix(in oklab, var(--muted) 28%, transparent);
+      background: color-mix(in oklab, var(--card) 85%, transparent);
+      color: var(--text);
+      padding: 8px 12px; border-radius: 999px; font-size: 14px; cursor: pointer;
+      transition: .2s background, .2s border-color;
+    }
+    .filter-chip[aria-pressed="true"]{
+      border-color: color-mix(in oklab, var(--brand) 65%, transparent);
+      background: color-mix(in oklab, var(--brand) 18%, var(--card));
+    }
+    .filter-chip:focus-visible{
+      outline: none; box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    .grid{
+      display: grid;
+      gap: var(--gap);
+      grid-template-columns: repeat(12, 1fr);
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    @media (min-width: 521px) and (max-width: 860px){
+      .grid{ grid-template-columns: repeat(6, 1fr); }
+    }
+
+   
+    .card{
+      grid-column: span 12;
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), var(--card));
+      border: 1px solid color-mix(in oklab, var(--muted) 18%, transparent);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 72px 1fr;         
+      grid-auto-rows: minmax(0, auto);
+      gap:16px; align-items:center;
+      transition: transform .18s ease, background .25s ease, border-color .18s ease;
+      overflow: hidden;                         
+    }
+    .card:hover{ transform: translateY(-4px); background: var(--card-hover); }
+    .card:focus-within{ outline: none; box-shadow: 0 0 0 6px var(--ring), var(--shadow); }
+
+   
+    .actions{
+      grid-column: 1 / -1;                    
+      display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+      justify-content: flex-start;
+      margin-top: 4px;
+    }
+
+    
+    @media (min-width: 521px) and (max-width: 860px){
+      .card{ grid-column: span 6; }
+    }
+
+    
+    @media (min-width: 861px){
+      .card{
+        grid-column: span 4;
+        grid-template-columns: 72px 1fr auto;  
+      }
+      .actions{
+        grid-column: auto;                      
+        justify-content: flex-end;
+      }
+    }
+
+    .icon{
+      width:72px; height:72px; border-radius: var(--radius-lg);
+      display:grid; place-items:center;
+      background: radial-gradient(120% 120% at 30% 20%, color-mix(in oklab, var(--accent) 35%, transparent), transparent), 
+                  linear-gradient(180deg, color-mix(in oklab, var(--panel) 60%, transparent), transparent);
+      border: 1px solid color-mix(in oklab, var(--muted) 24%, transparent);
+      font-size: 36px;
+    }
+
+    .title{
+      margin:0; font-size: 18px; line-height: 1.2;
+      display:flex; gap:8px; align-items:center;
+    }
+    .badge{
+      font-size: 11px; padding: 4px 8px; border-radius: 999px; 
+      background: color-mix(in oklab, var(--brand) 16%, var(--panel));
+      border: 1px solid color-mix(in oklab, var(--brand) 45%, transparent);
+      color: color-mix(in oklab, var(--brand) 80%, var(--text));
+    }
+    .desc{ margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+
+    .btn{
+      appearance:none; border:1px solid transparent; cursor:pointer;
+      border-radius: 12px; padding: 10px 12px; font-weight: 600; font-size: 14px;
+      transition: transform .12s ease, background .2s ease, border-color .2s ease;
+      white-space: nowrap;                      /* evita saltos feos */
+    }
+    .btn:active{ transform: translateY(1px) scale(.98); }
+    .btn:focus-visible{ outline:none; box-shadow: 0 0 0 6px var(--ring); }
+
+    .btn-primary{
+      background: linear-gradient(180deg, color-mix(in oklab, var(--brand) 22%, var(--panel)), color-mix(in oklab, var(--brand) 35%, var(--panel)));
+      border-color: color-mix(in oklab, var(--brand) 65%, transparent);
+      color: color-mix(in oklab, var(--brand) 95%, #052014);
+    }
+    .btn-ghost{
+      background: transparent;
+      border-color: color-mix(in oklab, var(--muted) 25%, transparent);
+      color: var(--text);
+    }
+
+    .meta{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; font-size:12px; color: var(--muted);
+    }
+    .meta span{ display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius: 999px;
+      background: color-mix(in oklab, var(--panel) 65%, transparent);
+      border: 1px solid color-mix(in oklab, var(--muted) 20%, transparent);
+    }
+
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    a.btn {
+  text-decoration: none; /* sin subrayado */
+  display: inline-block; /* que se comporte como botón */
+}
+
+a.btn:hover {
+  background: color-mix(in oklab, var(--muted) 12%, var(--card-hover));
+  border-color: color-mix(in oklab, var(--muted) 45%, transparent);
+  color: var(--brand); /* un poquito de color en hover */
+}
+
+  </style>
+</head>
+<body>
+  <main class="wrapper">
+    <header class="section-head" aria-describedby="sub">
+      <div class="eyebrow"><span class="dot" aria-hidden="true"></span>Zona de proyectos</div>
+      <h1>Elige un Proyecto</h1>
+      <p id="sub" class="sub">Conoce los proyectos y actividades que se realizan en la media tecnica <b>Diseño y Visualizacion de bases de datos<b/>.</p>
+      <a href="index.html" class="btn btn-ghost">Volver a la página principal</a>
+      <a href="../Templates/media_tecnica.html" class="btn btn-ghost">Volver a la página de las media técnicas</a>
+     </header>
+
+    <section class="grid" aria-label="Lista de juegos">
+      <article class="card" tabindex="0">
+        <div class="icon" aria-hidden="true">⭕️✖️</div>
+        <div>
+          <h2 class="title">Tres en Raya <span class="badge">Clásico</span></h2>
+          <p class="desc">Gana alineando tres símbolos antes que tu rival. Ideal para partidas rápidas.</p>
+          <div class="meta">
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="3-en-raya.html">Jugar</a>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="icon" aria-hidden="true">🚗</div>
+        <div>
+          <h2 class="title">Carreras <span class="badge">Memoria</span></h2>
+          <p class="desc">Compite contra otros estudiantes por el mayor puntaje</p>
+          <div class="meta">
+            <span>1 jugador</span>
+            <span>~5–10 min</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="../Templates/Juego_Carrera/Juego_carrera.html">Jugar</a>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="icon" aria-hidden="true">🐍</div>
+        <div>
+          <h2 class="title">Snake <span class="badge">Arcade</span></h2>
+          <p class="desc">Come, crece y evita chocar. Un clásico que nunca falla.</p>
+          <div class="meta">
+            <span>1 jugador</span>
+            <span>~5–15 min</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="../Templates/SNAKE.html">Jugar</a>
+        </div>
+      </article>
+
+<!--      <article class="card" tabindex="0">
+        <div class="icon" aria-hidden="true">🧩</div>
+        <div>
+          <h2 class="title">Sudoku <span class="badge">Lógica</span></h2>
+          <p class="desc">Rellena la cuadrícula con números del 1 al 9 sin repetir en fila, columna o subcuadro.</p>
+          <div class="meta">
+            <span>1 jugador</span>
+            <span>~10–30 min</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="./juegos/sudoku/index.html">Jugar</a>
+        </div>
+      </article> -->
+      
+
+      <article class="card" tabindex="0">
+        <div class="icon" aria-hidden="true">❓</div>
+        <div>
+          <h2 class="title">Ahorcado <span class="badge">Trivia</span></h2>
+          <p class="desc">Adivina la palabra antes de que sea tarde</p>
+          <div class="meta">
+            <span>1–4 jugadores</span>
+            <span>~5–10 min</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="../Templates/juego_ahorcado/juego_ahorcado.html">Jugar</a>
+        </div>
+      </article>
+<!--
+      <article class="card" tabindex="0">
+        <div class="icon" aria-hidden="true">🚧</div>
+        <div>
+          <h2 class="title">Próximamente <span class="badge">Nuevo</span></h2>
+          <p class="desc">Más juegos en camino. ¿Tienes uno en mente? ¡Súmalo a la colección!</p>
+          <div class="meta">
+            <span>Beta</span>
+            <span>Iterando</span>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-ghost" type="button">Proponer</button>
+          <button class="btn btn-primary" type="button">Notificarme</button>
+        </div>
+      </article> 
+      -->
+
+    </section>
+  </main>
+</body>
+</html>

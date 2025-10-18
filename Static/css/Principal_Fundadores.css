@@ -33,30 +33,32 @@ body {
 
 .logo-img {
     height: 120px;
+    width: auto;
 }
 
 .header-title {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 500;
     text-align: left;
     flex-grow: 1;
-    font-style: italic;
 }
 
 .institution-name {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     color: #8F121A;
     margin: 0;
     font-weight: bold;
 }
 
 .institution-subname {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #8F121A;
     margin: 0;
     font-weight: bold;
 }
 
 .institution-motto {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #8F121A;
     font-style: italic;
     margin: 0;
@@ -109,9 +111,8 @@ body {
    ========================= */
 .social-buttons {
     margin: 0px 0;
-    margin-left: 1170px;
+    justify-content: flex-end;
     display: flex;
-    justify-content: center;
     gap: 10px;
 }
 
@@ -132,6 +133,7 @@ body {
     transform: scale(1.1) translateY(-3px);
 }
 
+
 /* Efectos de color al hover */
 .social-icon:hover img[alt="Facebook"] {
     filter: drop-shadow(0 2px 4px rgba(24, 119, 242, 0.3));
@@ -144,7 +146,40 @@ body {
 .social-icon:hover img[alt="WhatsApp"] {
     filter: drop-shadow(0 2px 4px rgba(37, 211, 102, 0.3));
 }
+.boton-anti-bullying {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1.5px solid #8b0000;
+  border-radius: 8px;
+  background-color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
 
+.boton-anti-bullying:hover {
+  background-color: #8b0000;
+  color: white;
+}
+
+.boton-anti-bullying img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.boton-anti-bullying span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.boton-anti-bullying:hover span {
+  color: white;
+}
 /* Responsive */
 @media (max-width: 480px) {
     .social-buttons {
@@ -698,4 +733,89 @@ body {
 
 .dropdown .submenu a:hover {
     background: #f5f5f5;
+}
+/* Transparencia: botones y submenús */
+.trans-btn {
+    background: #ffffff;
+    border: 1px solid #d6d6d6;
+    color: #8F121A;
+    font-size: 1.08rem;
+    padding: 10px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 4px;
+    transition: all 0.2s ease;
+    width: 100%;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.trans-btn:hover {
+    background: #f9f9f9;
+    border-color: #8F121A;
+}
+
+.trans-btn-small {
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    color: #050202;
+    font-size: 0.96rem;
+    padding: 7px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 2px 0 2px 12px;
+    text-align: left;
+    width: 90%;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+.trans-btn-small:hover {
+    background: #fafafa;
+    border-color: #8F121A;
+}
+
+.trans-content {
+    background: #ffffff;
+    border-left: 3px solid #8F121A;
+    margin-bottom: 8px;
+    padding: 8px 16px;
+    border-radius: 0 8px 8px 8px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.03);
+    animation: fadeIn 0.3s;
+}
+
+.trans-content a {
+    display: inline-block;
+    margin: 4px 0;
+    color: #8F121A;
+    text-decoration: none;
+    font-size: 0.98rem;
+    font-weight: 500;
+}
+
+.trans-content a:hover {
+    text-decoration: underline;
+    color: #a0151e;
+}
+
+.trans-content span {
+    color: #333;
+    font-size: 0.97rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Submenús anidados */
+.trans-content .trans-content {
+    margin-left: 12px;
+    border-left: 2px dashed #d8b4b4;
+    background: #fafafa;
+    box-shadow: none;
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 6px;
 }

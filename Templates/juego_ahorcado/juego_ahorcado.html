@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color:  #0b0f14;;
+            padding: 30px;
+        }
+        h1 {
+            color: #e2dede;
+        }
+        #word {
+            font-size: 2em;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+            color: aliceblue;
+        }
+        #message {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: red;
+        }
+        #correct, #wrong {
+            font-size: 1.2em;
+            margin: 10px;
+        }
+        #wrong {
+            color: rgb(189, 8, 8);
+        }
+        #correct {
+            color: green;
+        }
+        #hangman {
+            margin: 20px auto;
+            width: 200px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego del Ahorcado</h1>
+    <img id="hangman" src="imagenes/0.png" alt="Ahorcado">
+    <p id="word"></p>
+    <p style="color: #e2dede;">Intentos restantes: <span id="tries">6</span></p>
+    <p id="correct">Letras correctas: </p>
+    <p id="wrong">Letras incorrectas: </p>
+    <p id="message"></p>
+
+    <script>
+        const words = ["javascript", "programacion", "codigo","fundadores","desarrollador","computadora","teclado","pantalla","internet","variable"];
+        let selectedWord = words[Math.floor(Math.random() * words.length)];
+        let correctLetters = [];
+        let wrongLetters = [];
+        let tries = 6;
+
+        const wordElement = document.getElementById("word");
+        const triesElement = document.getElementById("tries");
+        const correctElement = document.getElementById("correct");
+        const wrongElement = document.getElementById("wrong");
+        const messageElement = document.getElementById("message");
+        const hangmanImage = document.getElementById("hangman");
+
+        function displayWord() {
+            wordElement.textContent = selectedWord.split('').map(letter => correctLetters.includes(letter) ? letter : "_").join(' ');
+        }
+
+        function updateLetters() {
+            correctElement.textContent = "Letras correctas: " + correctLetters.join(", ");
+            wrongElement.textContent = "Letras incorrectas: " + wrongLetters.join(", ");
+        }
+
+        function updateHangman() {
+            // Solo actualiza si todavía hay intentos
+            const step = 6 - tries;
+            hangmanImage.src = `imagenes/${step}.png`;
+        }
+
+        function checkGameOver() {
+            if (!wordElement.textContent.includes("_")) {
+                messageElement.textContent = "¡Ganaste! 🎉";
+                document.removeEventListener("keydown", handleKey);
+            } else if (tries <= 0) {
+                messageElement.textContent = `Perdiste 😢 La palabra era: ${selectedWord}`;
+                hangmanImage.src = "imagenes/6.png"; 
+                document.removeEventListener("keydown", handleKey);
+            }
+        }
+
+        function handleKey(event) {
+            const letter = event.key.toLowerCase();
+            if (letter.match(/^[a-z]$/) && !correctLetters.includes(letter) && !wrongLetters.includes(letter)) {
+                if (selectedWord.includes(letter)) {
+                    correctLetters.push(letter);
+                } else {
+                    wrongLetters.push(letter);
+                    tries--;
+                    triesElement.textContent = tries;
+                    updateHangman();
+                }
+                displayWord();
+                updateLetters();
+                checkGameOver();
+            }
+        }
+
+        // Inicialización
+        displayWord();
+        updateLetters();
+        updateHangman();
+        document.addEventListener("keydown", handleKey);
+    </script>
+</body>
+</html>

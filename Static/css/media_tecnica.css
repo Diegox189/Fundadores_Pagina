@@ -4,7 +4,7 @@
 body, html {
     height: 100%;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #f5f5f5, #e3e3e3);
+    background: #f5f5f5;
     color: #333;
     margin: 0;
     padding: 0;
@@ -50,7 +50,6 @@ header h1 {
 ============================ */
 #media-container {
     margin-top: 40px;
-    padding: 20px;
 }
 
 /* ============================
@@ -61,6 +60,7 @@ header h1 {
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
+    align-items: flex-start;
 }
 
 /* ============================
@@ -76,6 +76,10 @@ header h1 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 2px solid #FCCC00;
     animation: fadeInUp 0.6s ease;
+    width: 270px;
+    min-height: 200px;
+    max-height: 270px;
+    overflow: hidden;
 }
 
 .media-card:hover {
@@ -87,10 +91,10 @@ header h1 {
    Imagen de la tarjeta
 ============================ */
 .media-card img {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
-    margin: 0 auto 15px auto;
+    margin: 0 auto 10px auto;
     transition: transform 0.3s;
 }
 
@@ -102,16 +106,28 @@ header h1 {
    Títulos y descripciones
 ============================ */
 .media-card h3 {
-    font-size: 1.3rem;
+    font-size: 1rem;
+    margin: 5px 0;
     color: #8F121A;
-    margin-bottom: 10px;
 }
 
-.media-card p {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #555;
-    margin-bottom: 20px;
+.media-card .resumen {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    margin-top: 8px;
+    padding: 0 8px;
+}
+
+.media-card:hover .resumen {
+    max-height: 140px;
+    padding: 8px;
+}
+
+.media-card .resumen p {
+    font-size: 0.85rem;
+    margin: 0 0 8px;
+    color: #333;
 }
 
 /* ============================
@@ -147,7 +163,7 @@ header h1 {
     margin-top: 40px;
 }
 
-.media-detalle img {
+.media-detalle img.logo-tecnica {
     width: 180px;
     height: 180px;
     object-fit: contain;
@@ -179,6 +195,7 @@ header h1 {
     margin-top: 20px;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .media-opciones .media-card img {
@@ -224,321 +241,204 @@ header h1 {
    Animación de entrada
 ============================ */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* Contenedor principal del carrusel */
-.carrusel-fundadores {
-    width: 100%;
-    max-width: 600px;
-    margin: 15px auto 10px;
-    position: relative;
-    background-color: transparent;
-}
-/* Título del carrusel */
-.carrusel-fundadores h3 {
-    color: #8F121A;
-    text-align: center;
-    margin-bottom: 8px;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-/* Contenedor de slides */
-.contenido-carrusel {
-    width: 100%;
-    height: 350px;
-    overflow: hidden;
-    position: relative;
-    background-color: transparent;
-    border-radius: 4px;
-}
-/* Slides individuales */
-.carrusel-fundadores .slide {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-}
-
-/* Slide activo */
-.carrusel-fundadores .slide.activo {
-    opacity: 1;
-}
-/* Imágenes dentro del slide */
-.carrusel-fundadores .slide img {
-
-    max-width: 98%;
-    max-height: 98%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    border-radius: 2px;
-}
-
-/* Controles de navegación */
-.controles {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 8px;
-    padding: 5px;
-}
-
-/* Botones de navegación */
-.controles button {
-    background-color: #8F121A;
-    color: white;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* Efecto hover para botones */
-.controles button:hover {
-    background-color: #FCCC00;
-    color: #8F121A;
-    transform: scale(1.05);
-}
-
-/* Indicadores de posición (opcional) */
-.indicadores {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 8px;
-}
-
-.indicador {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #ccc;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.indicador.activo {
-    background-color: #8F121A;
-    transform: scale(1.1);
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================
-   VERSIÓN ULTRA COMPACTA (opcional)
+   Banner principal
 ============================ */
-/*
-.carrusel-fundadores {
-    max-width: 500px;
-    margin: 10px auto 5px;
+.banner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
-.contenido-carrusel {
-    height: 300px;
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
 }
 
-.carrusel-fundadores h3 {
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-}
-*/
-/* Animación para el carrusel de media_tecnica.js */
-.carrusel-fundadores .contenido-carrusel {
-    position: relative;
-    width: 100%;
-    height: 300px; /* Ajusta según tu diseño */
-    overflow: hidden;
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.carrusel-fundadores .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 100%; /* Todas inician fuera de la vista */
-    opacity: 0;
-    transition: all 1s ease-in-out; /* Movimiento + opacidad */
-    z-index: 0;
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.carrusel-fundadores .slide.activo {
-    left: 0;       /* Entra a la vista */
-    opacity: 1;
-    z-index: 1;
+/* Botón dentro del carrusel */
+.btn-ir {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(60, 60, 60, 0.9);
+  padding: 14px 0;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.25);
+  transition: background 0.3s ease;
+  z-index: 10;
 }
 
-.carrusel-fundadores .slide.saliente {
-    left: -100%;   /* Sale hacia la izquierda */
-    opacity: 0;
-    z-index: 0;
+.btn-ir:hover {
+  background: rgba(100, 100, 100, 1);
+  color: #f5f5f5;
 }
-.controles-container .carousel-btn {
-    background: linear-gradient(145deg, #8F121A, #a52c34);
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.4rem;
+
+/* Botones de control */
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(145deg, #8F121A, #a52c34);
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.prev-btn:hover, .next-btn:hover {
+  background: linear-gradient(145deg, #FCCC00, #ffd633);
+  color: #8F121A;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 18px rgba(252,204,0,0.4);
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* ============================
+   Botones de juegos
+============================ */
+.boton-juego {
+    display: inline-block;
+    background: #8F121A;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
     font-weight: bold;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(143, 18, 26, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.controles-container .carousel-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-.controles-container .carousel-btn:hover::before {
-    left: 100%;
-}
-
-.controles-container .carousel-btn:hover {
-    background: linear-gradient(145deg, #FCCC00, #ffd700);
-    color: #8F121A;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(252, 204, 0, 0.4);
-}
-
-/* Indicadores de posición */
-.indicadores {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 0 15px;
-}
-
-.indicador {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #ccc;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
-    position: relative;
-    overflow: hidden;
 }
 
-.indicador::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 8px;
-    height: 8px;
-    background: #8F121A;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.3s ease;
+.boton-juego:hover {
+    background: #B71C1C;
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
 }
 
-.indicador.activo {
-    background: #FCCC00;
-    border-color: #8F121A;
-    transform: scale(1.2);
+/* ============================
+   Slide especial de revista
+============================ */
+.slide.revista {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  color: #fff;
+  padding: 20px;
 }
 
-.indicador.activo::after {
-    transform: translate(-50%, -50%) scale(1);
+.slide.revista img {
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  object-fit: contain;  /* <- ajustado para no recortar */
+  background: #000;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
-.indicador:hover {
-    background: #8F121A;
-    transform: scale(1.1);
+/* Botón principal */
+.submenu-container {
+  position: relative;
+  text-align: center;
 }
 
-/* Efecto de overlay para imágenes */
-.slide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(0,0,0,0.1), rgba(0,0,0,0.05));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+.submenu-btn {
+  background: #8F121A;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: 2px solid #FCCC00;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-.slide:hover::before {
-    opacity: 1;
+.submenu-btn:hover {
+  background: #FCCC00;
+  color: #8F121A;
 }
 
-/* Animación de entrada para el carrusel */
-@keyframes carouselEntrance {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+/* Opciones ocultas */
+.submenu {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  min-width: 160px;
+  z-index: 100;
 }
 
-.carrusel-fundadores {
-    animation: carouselEntrance 0.8s ease-out;
+/* Se muestra solo con la clase show */
+.submenu.show {
+  display: block;
 }
 
-/* Responsive para móviles */
-@media (max-width: 768px) {
-    .carrusel-fundadores {
-        margin: 20px 15px;
-        padding: 15px;
-    }
-    
-    .contenido-carrusel {
-        height: 150px;
-    }
-    
-    .controles-container {
-        gap: 15px;
-    }
-    
-    .controles-container .carousel-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1.2rem;
-    }
-    
-    .indicador {
-        width: 14px;
-        height: 14px;
-    }
+.submenu a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.submenu a:hover {
+  background: #f5f5f5;
+  color: #8F121A;
+}
+.cuadro-expandido {
+  text-align: center;
+  width: 100%;
+  max-width: 950px;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 6 px 12px rgba(0,0,0,0.1);
+  font-size: 16px;
+  line-height: 1.6;
 }

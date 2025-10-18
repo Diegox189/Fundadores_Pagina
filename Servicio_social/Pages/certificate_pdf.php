@@ -124,8 +124,10 @@ El estudiante desarrolló sus actividades en calidad de apoyo al docente, partic
 <br><br>
 Se firma en la ciudad de Medellín (Antioquia), el día de: <?= date('Y-m-d') ?>.
 <br><br>
+<br><br>
 ______________________________<br>
 Coordinación Académica
+<br><br>
 <br><br>
 ______________________________<br>
 Rector(a)

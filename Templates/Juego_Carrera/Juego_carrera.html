@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feria de la Ciencia 2025 – Carreras JS (Créditos)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --w: 500px;
+        --h: 500px;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background:  #0b0f14;
+        color: #eaeaea;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Arial;
+      }
+      .wrap {
+        display: grid;
+        place-items: center;
+        gap: 12px;
+        padding: 16px;
+      }
+      canvas {
+        width: var(--w);
+        height: var(--h);
+        background: #000;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+        touch-action: none;
+      }
+      .hud {
+        width: var(--w);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        opacity: 0.95;
+      }
+      .btns {
+        display: flex;
+        gap: 8px;
+      }
+      button {
+        background: #1f2937;
+        color: #e5e7eb;
+        border: 1px solid #374151;
+        border-radius: 10px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #111827;
+      }
+      #nameInput {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+      }
+      #nameCard {
+        background: #111827;
+        border: 1px solid #374151;
+        border-radius: 16px;
+        padding: 20px;
+        width: min(92vw, 420px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      }
+      #nameCard h3 {
+        margin: 0 0 10px;
+      }
+      #nameCard p {
+        margin: 0 0 10px;
+        color: #b8c1cc;
+      }
+      #nameCard input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #475569;
+        background: #0b1220;
+        color: #e5e7eb;
+      }
+      #nameCard .row {
+        margin-top: 12px;
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+      .touch-controls {
+        width: var(--w);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .touch-btn {
+        padding: 14px 0;
+        text-align: center;
+        background: #111827;
+        border: 1px solid #374151;
+        border-radius: 14px;
+        font-weight: 600;
+      }
+      .touch-btn:active {
+        transform: scale(0.99);
+      }
+      @media (min-width: 768px) {
+        .touch-controls {
+          display: none;
+        }
+      }
+      .scores {
+        width: var(--w);
+        display: flex;
+        gap: 8px;
+        font-size: 12px;
+        opacity: 0.9;
+      }
+      .scores .box {
+        flex: 1;
+        background: #0f172a;
+        border: 1px solid #1f2937;
+        border-radius: 10px;
+        padding: 8px;
+      }
+      .scores h4 {
+        margin: 0 0 6px;
+        font-size: 12px;
+        color: #cbd5e1;
+      }
+      .scores ol {
+        margin: 0;
+        padding-left: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <canvas
+        id="game"
+        width="500"
+        height="500"
+        aria-label="Juego de carreras con interfaz estilo Top Gear"
+      ></canvas>
+      <div class="hud">
+        <div>
+          <strong>Puntaje:</strong> <span id="score">0</span>
+          &nbsp;|&nbsp;
+          <strong>Máx:</strong> <span id="hiscore">0</span> -
+          <span id="hiscoreName">—</span>
+          &nbsp;|&nbsp;
+          <strong>Monedas:</strong> <span id="coins">0</span>
+        </div>
+        <div class="btns">
+          <button id="btnMute">🔊</button>
+          <button id="btnReset">Reiniciar (R)</button>
+        </div>
+      </div>
+      <div class="touch-controls">
+        <div id="btnLeft" class="touch-btn">⟵ Izquierda</div>
+        <div id="btnRight" class="touch-btn">Derecha ⟶</div>
+        <div id="btnAccel" class="touch-btn">Acelerar ⤒</div>
+        <div id="btnBrake" class="touch-btn">Frenar ⤓</div>
+      </div>
+      <div class="scores">
+        <div class="box">
+          <h4>Récords (Top 5)</h4>
+          <ol id="scoreList"></ol>
+        </div>
+        <div class="box">
+          <h4>Controles</h4>
+          <div>
+            Teclado: ← →, Acelerar: ↑, Freno: ↓, Nitro: Shift, Reinicio: R, en
+            Game Over: Y / N
+          </div>
+          <div>Táctil: Izquierda, Derecha, Acelerar, Frenar</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="nameInput">
+      <div id="nameCard">
+        <h3>Ingresa tu nombre</h3>
+        <p>Escribe tu nombre y presiona Iniciar (o Enter).</p>
+        <input id="playerName" placeholder="Tu nombre" maxlength="20" />
+        <div class="row">
+          <button id="startBtn">Iniciar</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const WIDTH = 500,
+        HEIGHT = 500;
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d", { alpha: false });
+
+      let started = false,
+        gameOver = false,
+        showCredits = false;
+      let moveLeft = false,
+        moveRight = false,
+        brake = false,
+        accel = false,
+        throttle = 0;
+      let speed = 2,
+        speedBoost = 0,
+        score = 0,
+        hiScore = 0;
+      let nombreConductor = "Invitado",
+        nombreMax = "";
+      let laneMarkerOffsetY = 0,
+        crashX = 0,
+        crashY = 0,
+        animId = null,
+        themeStage = 0,
+        starField = [],
+        coins = 0;
+      let coinCooldown = 0;
+      let fuel = 100,
+        nitros = 3,
+        nitroActive = false,
+        nitroTimer = 0;
+      const PIT = { x: 380, y: 300, w: 20, h: 160 };
+
+      const elScore = document.getElementById("score"),
+        elHi = document.getElementById("hiscore"),
+        elHiName = document.getElementById("hiscoreName"),
+        elCoins = document.getElementById("coins"),
+        scoreList = document.getElementById("scoreList");
+
+      const modal = document.getElementById("nameInput"),
+        input = document.getElementById("playerName"),
+        startBtn = document.getElementById("startBtn"),
+        btnReset = document.getElementById("btnReset"),
+        btnLeft = document.getElementById("btnLeft"),
+        btnRight = document.getElementById("btnRight"),
+        btnAccel = document.getElementById("btnAccel"),
+        btnBrake = document.getElementById("btnBrake"),
+        btnMute = document.getElementById("btnMute");
+
+      const LS_KEY = "carreras_records_v1";
+
+      function loadRecords() {
+        try {
+          return JSON.parse(localStorage.getItem(LS_KEY)) || [];
+        } catch {
+          return [];
+        }
+      }
+      function saveRecord(name, sc) {
+        const arr = loadRecords();
+        arr.push({ name, score: sc, ts: Date.now() });
+        arr.sort((a, b) => b.score - a.score || a.ts - b.ts);
+        localStorage.setItem(LS_KEY, JSON.stringify(arr.slice(0, 5)));
+        renderRecords();
+      }
+      function renderRecords() {
+        const arr = loadRecords();
+        scoreList.innerHTML = arr.length
+          ? arr
+              .map((r) => `<li>${r.name} — <strong>${r.score}</strong></li>`)
+              .join("")
+          : "<li>Sin récords</li>";
+      }
+
+      function loadImage(src) {
+        return new Promise((res) => {
+          const i = new Image();
+          i.onload = () => res(i);
+          i.onerror = () => res(null);
+          i.src = src;
+        });
+      }
+      let playerImg = null,
+        crashImg = null,
+        enemyImgs = [];
+      async function preload() {
+        const enemySrc = [
+          "Source/img_1.png",
+          "Source/img_2.png",
+          "Source/img_3.png",
+          "Source/img_5.png",
+        ];
+        [playerImg, crashImg] = await Promise.all([
+          loadImage("Source/img.png"),
+          loadImage("Source/img_4.png"),
+        ]);
+        const arr = await Promise.all(enemySrc.map(loadImage));
+        enemyImgs = arr.filter(Boolean);
+      }
+
+      class Vehicle {
+        constructor(img, x, y, name = "") {
+          this.img = img;
+          this.name = name;
+          const iw = (img && img.width) || 45,
+            ih = (img && img.height) || 70;
+          this.w = 45;
+          this.h = ih * (this.w / iw);
+          this.x = x - this.w / 2;
+          this.y = y - this.h / 2;
+          this.staticX = String(name).includes("img_3.png");
+          this.dir = Math.random() < 0.5 ? -1 : 1;
+          this.moveCnt = 0;
+        }
+        get rect() {
+          return { x: this.x, y: this.y, w: this.w, h: this.h };
+        }
+        updateEnemy() {
+          if (this.staticX) return;
+          this.x += this.dir * 2;
+          this.moveCnt++;
+          if (this.moveCnt > 60 + Math.floor(Math.random() * 61)) {
+            this.dir *= -1;
+            this.moveCnt = 0;
+          }
+          if (this.x < 101) {
+            this.x = 101;
+            this.dir = 1;
+          }
+          if (this.x + this.w > 389) {
+            this.x = 389 - this.w;
+            this.dir = -1;
+          }
+        }
+        draw() {
+          if (this.img) ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
+          else {
+            const night = themeStage === 2;
+            ctx.fillStyle = night ? "#8ab4f8" : "#1f2937";
+            ctx.fillRect(this.x, this.y, this.w, this.h);
+            ctx.fillStyle = night ? "#e8eaed" : "#f9fafb";
+            ctx.fillRect(this.x + 6, this.y + 8, this.w - 12, this.h - 16);
+          }
+        }
+      }
+      class Player extends Vehicle {
+        constructor(x, y) {
+          super(playerImg, x, y, "player");
+        }
+        update() {
+          if (!this.img && playerImg) this.img = playerImg;
+          if (moveLeft) this.x -= 4;
+          if (moveRight) this.x += 4;
+          if (this.x < 101) this.x = 101;
+          if (this.x + this.w > 389) this.x = 389 - this.w;
+        }
+      }
+      class Coin {
+        constructor(x, y) {
+          this.r = 8;
+          this.x = x;
+          this.y = y;
+          this.collected = false;
+        }
+        get rect() {
+          return {
+            x: this.x - this.r,
+            y: this.y - this.r,
+            w: this.r * 2,
+            h: this.r * 2,
+          };
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = "#FFD54F";
+          ctx.fill();
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = "#FBC02D";
+          ctx.stroke();
+        }
+      }
+
+      let player = null;
+      const enemies = new Set(),
+        coinsSet = new Set();
+
+      function spawnEnemy() {
+        const lane = [150, 250, 350][Math.floor(Math.random() * 3)];
+        const hasImgs = enemyImgs.length > 0;
+        const idx = hasImgs ? Math.floor(Math.random() * enemyImgs.length) : -1;
+        const img = hasImgs ? enemyImgs[idx] : null;
+        const name = hasImgs
+          ? ["img_1.png", "img_2.png", "img_3.png", "img_5.png"][idx] || ""
+          : "";
+        enemies.add(new Vehicle(img, lane, -100, name));
+      }
+      function canSpawnEnemy() {
+        if (enemies.size >= 2) return false;
+        for (const v of enemies) {
+          if (v.y < v.h * 1.5) return false;
+        }
+        return true;
+      }
+      function spawnCoin() {
+        if (coinCooldown > 0) {
+          coinCooldown--;
+          return;
+        }
+        if (Math.random() < 0.35 && coinsSet.size < 4) {
+          const laneCenter = [150, 250, 350][Math.floor(Math.random() * 3)];
+          coinsSet.add(new Coin(laneCenter, -30));
+          coinCooldown = 12;
+        }
+      }
+
+      function rectOverlap(a, b) {
+        return (
+          a.x < b.x + b.w &&
+          a.x + a.w > b.x &&
+          a.y < b.y + b.h &&
+          a.y + a.h > b.y
+        );
+      }
+      function updateHUD() {
+        elScore.textContent = score;
+        elHi.textContent = hiScore;
+        elHiName.textContent = nombreMax || "—";
+        elCoins.textContent = coins;
+      }
+
+      function softReset() {
+        score = 0;
+        speed = 2;
+        speedBoost = 0;
+        coins = 0;
+        laneMarkerOffsetY = 0;
+        enemies.clear();
+        coinsSet.clear();
+        player = new Player(250, 400);
+        moveLeft = false;
+        moveRight = false;
+        brake = false;
+        accel = false;
+        throttle = 0;
+        gameOver = false;
+        showCredits = false;
+        crashX = 0;
+        crashY = 0;
+        themeStage = 0;
+        fuel = 100;
+        nitros = 3;
+        nitroActive = false;
+        nitroTimer = 0;
+        buildStars();
+        updateHUD();
+        audio.engine.currentTime = 0;
+        audio.music.currentTime = 0;
+      }
+      function hardReset() {
+        softReset();
+        started = false;
+        modal.style.display = "flex";
+        setTimeout(() => input.focus(), 0);
+        try {
+          audio.engine.pause();
+          audio.music.pause();
+        } catch (e) {}
+      }
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+      function lerpColor(c1, c2, t) {
+        const a = [
+          parseInt(c1.slice(1, 3), 16),
+          parseInt(c1.slice(3, 5), 16),
+          parseInt(c1.slice(5, 7), 16),
+        ];
+        const b = [
+          parseInt(c2.slice(1, 3), 16),
+          parseInt(c2.slice(3, 5), 16),
+          parseInt(c2.slice(5, 7), 16),
+        ];
+        const m = a.map((v, i) => Math.round(lerp(v, b[i], t)));
+        return `#${m.map((x) => x.toString(16).padStart(2, "0")).join("")}`;
+      }
+      function updateThemeStage() {
+        if (score < 10) themeStage = 0;
+        else if (score < 20) themeStage = 1;
+        else themeStage = 2;
+      }
+      function buildStars() {
+        starField = Array.from({ length: 60 }, () => ({
+          x: Math.random() * WIDTH,
+          y: Math.random() * HEIGHT,
+          r: Math.random() * 1.5 + 0.5,
+          tw: Math.random() * Math.PI * 2,
+        }));
+      }
+      function drawStars() {
+        for (const s of starField) {
+          s.tw += 0.05;
+          const a = 0.5 + Math.sin(s.tw) * 0.5;
+          ctx.globalAlpha = a;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+      }
+
+      function inPit() {
+        const r = player.rect;
+        return r.x + r.w > PIT.x && r.y + r.h > PIT.y && r.y < PIT.y + PIT.h;
+      }
+      function drawPitArea() {
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(PIT.x, PIT.y, PIT.w, PIT.h);
+        ctx.clip();
+        ctx.fillStyle = "#333";
+        ctx.fillRect(PIT.x, PIT.y, PIT.w, PIT.h);
+        ctx.fillStyle = "#fafafa";
+        for (let y = PIT.y; y < PIT.y + PIT.h; y += 12) {
+          ctx.fillRect(PIT.x, y, PIT.w, 6);
+        }
+        ctx.restore();
+        ctx.fillStyle = "#fff";
+        ctx.font = "12px system-ui";
+        ctx.textAlign = "left";
+        ctx.fillText("PITS", PIT.x - 8, PIT.y - 6);
+      }
+      function drawPitSign() {
+        const active = inPit() && brake;
+        const t = 0.6 + 0.4 * Math.sin(Date.now() / 160);
+        const bx = 430,
+          by = PIT.y - 40,
+          bw = 56,
+          bh = 32;
+        ctx.fillStyle = "#5b5b5b";
+        ctx.fillRect(bx + 24, by + bh, 4, 40);
+        ctx.beginPath();
+        ctx.ellipse(bx + 26, by + bh + 42, 12, 3, 0, 0, Math.PI * 2);
+        ctx.fill();
+        const g = ctx.createLinearGradient(bx, by, bx, by + bh);
+        g.addColorStop(0, active ? "#fde68a" : "#e5e7eb");
+        g.addColorStop(1, active ? "#f59e0b" : "#cbd5e1");
+        ctx.fillStyle = g;
+        ctx.fillRect(bx, by, bw, bh);
+        ctx.strokeStyle = "#111827";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(bx + 1, by + 1, bw - 2, bh - 2);
+        ctx.fillStyle = "#111827";
+        ctx.font = '18px "Orbitron", system-ui';
+        ctx.textAlign = "center";
+        ctx.fillText("PIT", bx + bw / 2, by + 20);
+        ctx.save();
+        ctx.globalAlpha = active ? t : 0.8;
+        ctx.fillStyle = active ? "#16a34a" : "#111827";
+        ctx.beginPath();
+        ctx.moveTo(bx + bw - 18, by + bh / 2);
+        ctx.lineTo(bx + bw - 28, by + bh / 2 - 8);
+        ctx.lineTo(bx + bw - 28, by + bh / 2 + 8);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+      function drawPitFloorArrow() {
+        const baseX = 350;
+        const color = "#ffffff";
+        const t = (Date.now() / 400) % 1;
+        for (let i = 0; i < 4; i++) {
+          const yy = PIT.y - 28 + ((i * 24 + t * 24) % 72);
+          if (yy > PIT.y + PIT.h - 8) continue;
+          ctx.save();
+          ctx.globalAlpha = 0.45;
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.moveTo(baseX, yy);
+          ctx.lineTo(baseX + 18, yy - 10);
+          ctx.lineTo(baseX + 18, yy - 3);
+          ctx.lineTo(baseX + 42, yy - 3);
+          ctx.lineTo(baseX + 42, yy + 3);
+          ctx.lineTo(baseX + 18, yy + 3);
+          ctx.lineTo(baseX + 18, yy + 10);
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function drawTopGearHUD(currSpeed) {
+        ctx.fillStyle = "#111827";
+        ctx.fillRect(0, HEIGHT - 60, WIDTH, 60);
+        ctx.fillStyle = "#0ea5e9";
+        ctx.fillRect(20, HEIGHT - 48, 120, 36);
+        const kmh = Math.min(240, Math.round(currSpeed * 40));
+        ctx.fillStyle = "#000";
+        ctx.font = '26px "Orbitron", system-ui';
+        ctx.textAlign = "left";
+        ctx.fillText(kmh.toString().padStart(3, "0"), 30, HEIGHT - 22);
+        ctx.fillStyle = "#e2e8f0";
+        ctx.font = "12px system-ui";
+        ctx.fillText("km/h", 105, HEIGHT - 22);
+        const tx = 160,
+          ty = HEIGHT - 44,
+          tw = 180,
+          th = 20;
+        const rpm = Math.max(0, Math.min(1, currSpeed / 8));
+        ctx.fillStyle = "#0f172a";
+        ctx.fillRect(tx, ty, tw, th);
+        const tg = ctx.createLinearGradient(tx, ty, tx + tw, ty);
+        tg.addColorStop(0, "#22c55e");
+        tg.addColorStop(0.7, "#f59e0b");
+        tg.addColorStop(1, "#ef4444");
+        ctx.fillStyle = tg;
+        ctx.fillRect(tx, ty, tw * rpm, th);
+        ctx.strokeStyle = "#94a3b8";
+        ctx.strokeRect(tx, ty, tw, th);
+        ctx.fillStyle = "#e2e8f0";
+        ctx.fillText("RPM", tx, ty - 6);
+        if (rpm > 0.85) {
+          const p = 0.5 + 0.5 * Math.sin(Date.now() / 150);
+          ctx.save();
+          ctx.globalCompositeOperation = "lighter";
+          ctx.globalAlpha = p * 0.9;
+          ctx.shadowColor = "#ff4d4f";
+          ctx.shadowBlur = 18;
+          ctx.fillStyle = "#ff4d4f";
+          ctx.fillRect(tx, ty, tw * rpm, th);
+          ctx.restore();
+        }
+        const fH = 40,
+          fW = 12,
+          fx = WIDTH - 30,
+          fy = HEIGHT - 50;
+        ctx.strokeStyle = "#94a3b8";
+        ctx.strokeRect(fx, fy, fW, fH);
+        ctx.fillStyle =
+          fuel > 30 ? "#22c55e" : fuel > 15 ? "#f59e0b" : "#ef4444";
+        const fh = Math.max(1, Math.floor(fH * (fuel / 100)));
+        ctx.fillRect(fx + 1, fy + fH - fh, fW - 2, fh);
+        ctx.fillStyle = "#e2e8f0";
+        ctx.fillText("NITRO", WIDTH - 120, HEIGHT - 50);
+        for (let i = 0; i < 3; i++) {
+          ctx.fillStyle = i < nitros ? "#f43f5e" : "#334155";
+          ctx.fillRect(WIDTH - 120 + i * 22, HEIGHT - 42, 18, 12);
+        }
+        if (inPit() && brake) {
+          const a = 0.6 + 0.4 * Math.sin(Date.now() / 120);
+          ctx.globalAlpha = a;
+          ctx.fillStyle = "#10b981";
+          ctx.fillRect(fx - 26, fy - 18, 20, 18);
+          ctx.fillStyle = "#0f172a";
+          ctx.fillRect(fx - 23, fy - 14, 14, 10);
+          ctx.fillStyle = "#10b981";
+          ctx.fillRect(fx - 10, fy - 14, 6, 8);
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = "#e2e8f0";
+          ctx.fillText("REPOSTANDO", WIDTH - 180, HEIGHT - 20);
+        }
+      }
+
+      function drawScene() {
+        updateThemeStage();
+        let bg, road, edge, marker;
+        if (themeStage === 0) {
+          bg = "#4CD038";
+          road = "#646464";
+          edge = "#FFE800";
+          marker = "#FFFFFF";
+        } else if (themeStage === 1) {
+          const t = Math.min(1, (score - 10) / 10);
+          bg = lerpColor("#4CD038", "#ff9e80", t);
+          road = lerpColor("#646464", "#5d4037", t);
+          edge = lerpColor("#FFE800", "#FFD54F", t);
+          marker = lerpColor("#FFFFFF", "#FFECB3", t);
+        } else {
+          bg = "#000000";
+          road = "#282828";
+          edge = "#FFD700";
+          marker = "#C8C8C8";
+        }
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        if (themeStage === 2 && !gameOver) drawStars();
+        ctx.fillStyle = road;
+        ctx.fillRect(100, 0, 300, HEIGHT);
+        ctx.fillStyle = edge;
+        ctx.fillRect(100, 0, 10, HEIGHT);
+        ctx.fillRect(389, 0, 10, HEIGHT);
+        drawPitArea();
+        drawPitFloorArrow();
+        drawPitSign();
+        ctx.fillStyle = marker;
+        for (let y = -100; y < HEIGHT; y += 100) {
+          ctx.fillRect(195, y + laneMarkerOffsetY, 10, 50);
+          ctx.fillRect(295, y + laneMarkerOffsetY, 10, 50);
+        }
+      }
+
+      function drawCredits() {
+        ctx.fillStyle = "#0b0b0b";
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        ctx.fillStyle = "#111827";
+        ctx.fillRect(50, 120, WIDTH - 100, 260);
+        ctx.strokeStyle = "#374151";
+        ctx.strokeRect(50, 120, WIDTH - 100, 260);
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#e5e7eb";
+        ctx.font = '28px "Orbitron", system-ui';
+        ctx.fillText("CRÉDITOS", WIDTH / 2, 170);
+        ctx.font = "18px system-ui, sans-serif";
+        ctx.fillText("Feria de la Ciencia - 2025", WIDTH / 2, 220);
+        ctx.fillText("Base de datos", WIDTH / 2, 250);
+        ctx.font = "14px system-ui, sans-serif";
+        ctx.fillStyle = "#93c5fd";
+        ctx.fillText("Pulsa R para volver al menú", WIDTH / 2, 300);
+      }
+
+      function loop() {
+        if (!started) {
+          ctx.fillStyle = "#0b0b0b";
+          ctx.fillRect(0, 0, WIDTH, HEIGHT);
+          ctx.fillStyle = "#eaeaea";
+          ctx.textAlign = "center";
+          ctx.font = "18px system-ui, sans-serif";
+          ctx.fillText(
+            "Escribe tu nombre para comenzar",
+            WIDTH / 2,
+            HEIGHT / 2
+          );
+          animId = requestAnimationFrame(loop);
+          return;
+        }
+
+        if (showCredits) {
+          drawCredits();
+          animId = requestAnimationFrame(loop);
+          return;
+        }
+
+        throttle = accel
+          ? Math.min(1, throttle + 0.03)
+          : Math.max(0, throttle - 0.02);
+        const brakeFactor = brake ? 0.5 : 1;
+        const currSpeed = Math.max(
+          0,
+          (speed + speedBoost) * brakeFactor * (1 + 0.5 * throttle)
+        );
+        laneMarkerOffsetY += currSpeed * 2;
+        if (laneMarkerOffsetY >= 100) laneMarkerOffsetY = 0;
+
+        drawScene();
+
+        if (gameOver) {
+          if (player) player.draw();
+          for (const v of enemies) v.draw();
+          for (const c of coinsSet) c.draw();
+          if (crashImg)
+            ctx.drawImage(crashImg, crashX - 30, crashY - 30, 60, 60);
+          ctx.fillStyle = "#C80000";
+          ctx.globalAlpha = 0.9;
+          ctx.fillRect(0, 50, WIDTH, 120);
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = "#FFFFFF";
+          ctx.textAlign = "center";
+          ctx.font = "20px system-ui, sans-serif";
+          ctx.fillText("¡Perdiste!", WIDTH / 2, 90);
+          ctx.fillText("¿Deseas volver a jugar? (Y/N)", WIDTH / 2, 130);
+          drawTopGearHUD(currSpeed);
+          animId = requestAnimationFrame(loop);
+          return;
+        }
+
+        if (!player) player = new Player(250, 400);
+        player.update();
+        player.draw();
+
+        if (canSpawnEnemy()) spawnEnemy();
+        spawnCoin();
+
+        for (const v of Array.from(enemies)) {
+          v.y += currSpeed;
+          v.updateEnemy();
+          v.draw();
+          if (v.y >= HEIGHT) {
+            enemies.delete(v);
+            score++;
+            if (score > hiScore) {
+              hiScore = score;
+              nombreMax = nombreConductor;
+            }
+            if (score % 5 === 0) speed++;
+            updateHUD();
+          }
+        }
+
+        for (const c of Array.from(coinsSet)) {
+          c.y += currSpeed * 1.1;
+          c.draw();
+          if (c.y - c.r >= HEIGHT) coinsSet.delete(c);
+          else if (!c.collected && rectOverlap(player.rect, c.rect)) {
+            c.collected = true;
+            coins += 1;
+            score += 5;
+            if (score > hiScore) {
+              hiScore = score;
+              nombreMax = nombreConductor;
+            }
+            updateHUD();
+            coinsSet.delete(c);
+            try {
+              if (!audio.muted) {
+                const s = audio.coin.cloneNode();
+                s.volume = audio.volumes.coin;
+                s.play();
+              }
+            } catch (e) {}
+          }
+        }
+
+        if (nitroActive) {
+          nitroTimer--;
+          if (nitroTimer <= 0) {
+            nitroActive = false;
+            speedBoost = 0;
+          }
+        }
+        if (brake) speedBoost = Math.max(0, speedBoost - 0.2);
+        fuel -= 0.005 * currSpeed;
+        if (inPit() && brake) {
+          fuel = Math.min(100, fuel + 0.8);
+          speedBoost = 0;
+        }
+        if (fuel <= 0 && !gameOver) {
+          gameOver = true;
+          saveRecord(nombreConductor, score);
+          try {
+            audio.engine.pause();
+            if (!audio.muted) {
+              audio.crash.currentTime = 0;
+              audio.crash.play();
+            }
+          } catch (e) {}
+        }
+
+        for (const v of enemies) {
+          if (rectOverlap(player.rect, v.rect)) {
+            crashX = player.x + player.w / 2;
+            crashY = player.y;
+            gameOver = true;
+            saveRecord(nombreConductor, score);
+            try {
+              audio.engine.pause();
+              if (!audio.muted) {
+                audio.crash.currentTime = 0;
+                audio.crash.play();
+              }
+            } catch (e) {}
+            break;
+          }
+        }
+
+        const nameColor = themeStage === 2 ? "#dcdcdc" : "#FFFFFF";
+        ctx.fillStyle = nameColor;
+        ctx.font = "16px system-ui, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("Conductor: " + nombreConductor, WIDTH / 2, HEIGHT - 70);
+
+        drawTopGearHUD(currSpeed);
+        animId = requestAnimationFrame(loop);
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (modal.style.display !== "none") return;
+        if (showCredits) {
+          if (e.key === "r" || e.key === "R") {
+            hardReset();
+          }
+          return;
+        }
+        if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A")
+          moveLeft = true;
+        if (e.key === "ArrowRight" || e.key === "d" || e.key === "D")
+          moveRight = true;
+        if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") accel = true;
+        if (e.key === "ArrowDown" || e.key === "s" || e.key === "S")
+          brake = true;
+        if (
+          (e.key === "Shift" || e.key === "ShiftRight") &&
+          !nitroActive &&
+          nitros > 0 &&
+          !gameOver
+        ) {
+          nitroActive = true;
+          nitroTimer = 180;
+          speedBoost = 3;
+          nitros--;
+        }
+        if (gameOver) {
+          if (e.key === "y" || e.key === "Y") {
+            softReset();
+            try {
+              if (!audio.muted) {
+                audio.engine.play();
+                audio.music.play();
+              }
+            } catch (e) {}
+          }
+          if (e.key === "n" || e.key === "N") {
+            showCredits = true;
+            gameOver = false;
+            try {
+              audio.engine.pause();
+              audio.music.pause();
+            } catch (e) {}
+          }
+        } else {
+          if (e.key === "r" || e.key === "R") {
+            hardReset();
+            try {
+              audio.engine.pause();
+              audio.music.pause();
+            } catch (e) {}
+          }
+        }
+      });
+      window.addEventListener("keyup", (e) => {
+        if (modal.style.display !== "none") return;
+        if (showCredits) return;
+        if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A")
+          moveLeft = false;
+        if (e.key === "ArrowRight" || e.key === "d" || e.key === "D")
+          moveRight = false;
+        if (e.key === "ArrowUp" || e.key === "w" || e.key === "W")
+          accel = false;
+        if (e.key === "ArrowDown" || e.key === "s" || e.key === "S")
+          brake = false;
+      });
+      input.addEventListener("keydown", (e) => {
+        e.stopPropagation();
+        if (e.key === "Enter") startBtn.click();
+      });
+
+      function bindTouch(el, down, up) {
+        const d = (ev) => {
+          ev.preventDefault();
+          down();
+        };
+        const u = (ev) => {
+          ev.preventDefault();
+          up();
+        };
+        el.addEventListener("pointerdown", d);
+        el.addEventListener("pointerup", u);
+        el.addEventListener("pointerleave", u);
+        el.addEventListener("touchstart", d, { passive: false });
+        el.addEventListener("touchend", u, { passive: false });
+      }
+      bindTouch(
+        btnLeft,
+        () => {
+          moveLeft = true;
+        },
+        () => {
+          moveLeft = false;
+        }
+      );
+      bindTouch(
+        btnRight,
+        () => {
+          moveRight = true;
+        },
+        () => {
+          moveRight = false;
+        }
+      );
+      bindTouch(
+        btnAccel,
+        () => {
+          accel = true;
+        },
+        () => {
+          accel = false;
+        }
+      );
+      bindTouch(
+        btnBrake,
+        () => {
+          brake = true;
+        },
+        () => {
+          brake = false;
+        }
+      );
+
+      btnReset.addEventListener("click", () => {
+        hardReset();
+        try {
+          audio.engine.pause();
+          audio.music.pause();
+        } catch (e) {}
+      });
+
+      const audio = {
+        engine: new Audio("Source/snd_engine.mp3"),
+        crash: new Audio("Source/snd_crash.mp3"),
+        coin: new Audio("Source/snd_coin.mp3"),
+        music: new Audio("Source/snd_music.mp3"),
+        muted: false,
+        volumes: { engine: 0.35, crash: 0.9, coin: 0.6, music: 0.25 },
+      };
+      audio.engine.loop = true;
+      audio.music.loop = true;
+      audio.engine.volume = audio.volumes.engine;
+      audio.crash.volume = audio.volumes.crash;
+      audio.music.volume = audio.volumes.music;
+
+      btnMute.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        btnMute.textContent = audio.muted ? "🔈" : "🔊";
+        try {
+          if (audio.muted) {
+            audio.engine.pause();
+            audio.music.pause();
+          } else {
+            if (started && !showCredits && !gameOver) {
+              audio.engine.play();
+              audio.music.play();
+            }
+          }
+        } catch (e) {}
+      });
+
+      startBtn.addEventListener("click", async () => {
+        await preload();
+        player = new Player(250, 400);
+        const val = (input.value || "").trim();
+        nombreConductor = val || "Invitado";
+        input.value = "";
+        modal.style.display = "none";
+        started = true;
+        gameOver = false;
+        showCredits = false;
+        softReset();
+        if (animId === null) animId = requestAnimationFrame(loop);
+        try {
+          if (!audio.muted) {
+            audio.engine.play();
+            audio.music.play();
+          }
+        } catch (e) {}
+      });
+
+      (function init() {
+        renderRecords();
+        modal.style.display = "flex";
+        setTimeout(() => input.focus(), 0);
+        ctx.fillStyle = "#0b0b0b";
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        buildStars();
+        if (animId === null) animId = requestAnimationFrame(loop);
+      })();
+    </script>
+  </body>
+</html>
